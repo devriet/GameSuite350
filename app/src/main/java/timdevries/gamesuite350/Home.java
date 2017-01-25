@@ -48,7 +48,8 @@ public class Home extends AppCompatActivity {
         mines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent start = new Intent(me, minesweeper.class);
+                startActivity(start);
             }
         });
         checkers = (Button) findViewById(R.id.button3);

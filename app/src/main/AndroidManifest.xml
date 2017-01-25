@@ -27,6 +27,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="timdevries.gamesuite350.Home" />
         </activity>
+        <activity
+            android:name=".minesweeper"
+            android:label="@string/title_activity_minesweeper"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="timdevries.gamesuite350.Home" />
+        </activity>
     </application>
 
 </manifest>
