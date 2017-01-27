@@ -1,37 +1,58 @@
 package timdevries.gamesuite350;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
+/**
+ * This is a frickin javadoc comment.
+ */
 public class Home extends AppCompatActivity {
+    /**
+     * This is a frickin javadoc comment.
+     */
+    private Button tictac;
+    /**
+     * This is a frickin javadoc comment.
+     */
+    private Button mines;
+    /**
+     * This is a frickin javadoc comment.
+     */
+    private Button connect;
+    /**
+     * This is a frickin javadoc comment.
+     */
+    private Button checkers;
+    /**
+     * This is a frickin javadoc comment.
+     */
+    private Activity me;
 
-    Button tictac, mines, connect, checkers;
-    Activity me;
+    /**
+     *
+     * final @param savedInstanceState
+     * This is a frickin javadoc comment.
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 /*        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab =
+                    (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view,
+                        "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });*/
@@ -39,7 +60,7 @@ public class Home extends AppCompatActivity {
         tictac = (Button) findViewById(R.id.button);
         tictac.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 Intent start = new Intent(me, tictactoe.class);
                 startActivity(start);
             }
@@ -47,7 +68,7 @@ public class Home extends AppCompatActivity {
         mines = (Button) findViewById(R.id.button2);
         mines.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 Intent start = new Intent(me, minesweeper.class);
                 startActivity(start);
             }
@@ -55,29 +76,39 @@ public class Home extends AppCompatActivity {
         checkers = (Button) findViewById(R.id.button3);
         checkers.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
             }
         });
         connect = (Button) findViewById(R.id.button4);
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
             }
         });
 
     }
 
+    /**
+     *
+     * @param menu This is a frickin javadoc comment.
+     * @return
+     */
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 
+    /**
+     *
+     * @param item This is a frickin javadoc comment.
+     * @return
+     */
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
