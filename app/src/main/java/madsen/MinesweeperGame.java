@@ -328,9 +328,10 @@ public class MinesweeperGame {
             for (int dy = y - 1; dy <= y + 1; dy++) {
                 // Checking that the empty cell expansion does not access
                 // outside of board.
-                if (0 < dx || dx < boardWidth
-                        || 0 < dy || dy < boardHeight
-                        || (dx == x && dy == y)) {
+                if (0 > dx || dx >= boardWidth
+                        || 0 > dy || dy >= boardHeight
+                        || (dx == x && dy == y)
+                        || board[y][x].isFlagged()) {
                     continue;
                 }
 
