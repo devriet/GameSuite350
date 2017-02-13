@@ -1,7 +1,8 @@
 package timdevries.gamesuite350;
 
 /**
- * Created by Matt on 1/20/2017.
+ * Created by Matt Johnson on 1/20/2017.
+ * @author Matt Johnson
  */
 
 public class TTTLogic {
@@ -10,6 +11,10 @@ public class TTTLogic {
      * The player character, either an 'X' or 'O'.
      */
     private char playerChar;
+    /**
+     * The computers character.
+     */
+    private char compChar;
     /**
      * The board size for a normal game of tic tac toe.
      *  A tic tac toe board is a 3 by 3 grid.
@@ -36,12 +41,20 @@ public class TTTLogic {
      * The player's chosen character is set and the
      * gameover checks are set to false.
      * The board is filled with spaces to signal places that can be filled.
-     * pC is the players chosen character @param pC
+     * @param pc is the players chosen character
      */
-    public TTTLogic(final char pC) {
-        playerChar = pC;
+    public TTTLogic(final char pc) {
+        playerChar = pc;
         boardFull = false;
         haveWon = false;
+
+        if (playerChar == 'X' || playerChar == 'x') {
+            compChar = 'O';
+            playerChar = 'X';
+        } else {
+            compChar = 'X';
+            playerChar = 'O';
+        }
 
         for (int i = 0; i < boardSize; i++) {
             for (int k = 0; k < boardSize; k++) {
@@ -54,11 +67,11 @@ public class TTTLogic {
      * This method is for the placing of a piece on tic tac toe board.
      * It checks if the selected space is open for a piece and
      * then places it at that place if it is open.
-     * x is the horizontal coordinate of the space
-     * where the player wants to place their piece @param x
-     * y is the vertical coordinate of the space
-     * where the player want to place their piece @param y
-     * returns whether or not the piece was placed @return
+     * @param x is the horizontal coordinate of the space
+     * where the player wants to place their piece
+     * @param y is the vertical coordinate of the space
+     * where the player want to place their piece
+     * @return whether or not the piece was placed
      */
     public boolean placePiece(final int x, final int y) {
 
@@ -75,7 +88,7 @@ public class TTTLogic {
      * A method that check if the game is over.
      * It calls a helper method to determine if there
      * are three of the important chars in a row
-     * return true if game is over otherwise return false @return
+     * @return true if game is over otherwise return false
      */
     private boolean isGameOver() {
 
@@ -95,11 +108,52 @@ public class TTTLogic {
     }
 
     /**
-     *
-     * @return
+     * This method returns false if there aren't three in a row.
+     * If there are it returns true
+     * @return if there are three in a row
      */
     private boolean threeInRow() {
 
+        //Player wins with three in a row:
+        // for every row see if the chars are the same all the
+        // way across
+        for (int i = 0; i < boardSize; i++) {
+                if (board[i][0] == playerChar && board[i][1] == playerChar
+                        && board[i][2] == playerChar) {
+                    haveWon = true;
+                    return true;
+                }
+        }
+
+        //vertical three in a row/column
+        for (int i = 0; i < boardSize; i++) {
+            if (board[0][i] == playerChar && board[1][i] == playerChar
+                    && board[2][i] == playerChar) {
+                haveWon = true;
+                return true;
+            }
+        }
+
+        //Computer wins with three in a row:
+        // for every row see if the chars are the same all the
+        // way across
+        for (int i = 0; i < boardSize; i++) {
+            if (board[i][0] == playerChar && board[i][1] == playerChar
+                    && board[i][2] == playerChar) {
+                haveWon = true;
+                return true;
+            }
+        }
+
+        //vertical three in a row/column
+        for (int i = 0; i < boardSize; i++) {
+            if (board[0][i] == playerChar && board[1][i] == playerChar
+                    && board[2][i] == playerChar) {
+                haveWon = true;
+                return true;
+            }
+        }
+        // no three in a row
         return false;
     }
 
