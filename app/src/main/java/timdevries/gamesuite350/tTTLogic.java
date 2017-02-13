@@ -157,4 +157,11 @@ public class TTTLogic {
         return false;
     }
 
+    /**
+     * Returns the player's chosen piece
+     * @return
+     */
+    public char getPlayerChar() {
+        return playerChar;
+    }
 }
