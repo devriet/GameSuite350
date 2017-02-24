@@ -33,7 +33,6 @@ public class Home extends AppCompatActivity {
      * This is a frickin javadoc comment.
      */
     private Activity me;
-
     /**
      *
      * final @param savedInstanceState
