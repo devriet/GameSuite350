@@ -158,10 +158,20 @@ public class TTTLogic {
     }
 
     /**
-     * Returns the player's chosen piece
+     * Returns the player's chosen piece.
      * @return
      */
     public char getPlayerChar() {
         return playerChar;
+    }
+
+    /**
+     * Returns the board.
+     * @return
+     */
+    public char[][] getBoard()   {
+        char[][] cboard;
+        cboard = board.clone();
+        return cboard;
     }
 }
