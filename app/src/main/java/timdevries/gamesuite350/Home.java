@@ -60,7 +60,7 @@ public class Home extends AppCompatActivity {
         tictac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                Intent start = new Intent(me, tictactoe.class);
+                Intent start = new Intent(me, Tictactoe.class);
                 startActivity(start);
             }
         });

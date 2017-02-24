@@ -37,7 +37,7 @@ public class TTTLogic {
 
 
     /**
-     * The constructor for the tictactoe game.
+     * The constructor for the Tictactoe game.
      * The player's chosen character is set and the
      * gameover checks are set to false.
      * The board is filled with spaces to signal places that can be filled.
