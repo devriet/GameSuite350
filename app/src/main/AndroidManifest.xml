@@ -28,7 +28,7 @@
                 android:value="timdevries.gamesuite350.Home" />
         </activity>
         <activity
-            android:name=".minesweeper"
+            android:name=".MinesweeperGUI"
             android:label="@string/title_activity_minesweeper"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">

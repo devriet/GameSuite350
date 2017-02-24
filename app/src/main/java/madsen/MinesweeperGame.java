@@ -55,12 +55,12 @@ public class MinesweeperGame {
     private static final double MAX_BOMB_MULTIPLIER = (2.0 / 3.0);
 
     /**
-     * The height of this minesweeper board.
+     * The height of this MinesweeperGUI board.
      */
     private int boardHeight;
 
     /**
-     * The width of this minesweeper board.
+     * The width of this MinesweeperGUI board.
      */
     private int boardWidth;
 

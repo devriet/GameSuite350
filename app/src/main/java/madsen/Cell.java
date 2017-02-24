@@ -1,7 +1,7 @@
 package madsen;
 
 /**
- * A representation of a cell located on the board of a minesweeper field.
+ * A representation of a cell located on the board of a MinesweeperGUI field.
  *
  * Created by Troy Madsen on 1/25/2017.
  */
