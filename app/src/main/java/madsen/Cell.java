@@ -60,18 +60,19 @@ public class Cell {
     }
 
     /**
-     * Allows the number of surrounding bombs to be set to an appopriate value.
+     * Allows the number of surrounding bombs to be set to an appropriate value.
      *
-     * @param pSurroundingBombs The number of bombs that aresurrounding this
+     * @param pSurroundingBombs The number of bombs that are surrounding this
      *                          cell.
      * @return Whether surroundingBombs was set the the specified value.
      */
     public boolean setSurroundingBombs(final int pSurroundingBombs) {
         if (MIN_SURROUNDING_BOMBS <= pSurroundingBombs
-                || pSurroundingBombs <= MAX_SURROUNDING_BOMBS) {
+                && pSurroundingBombs <= MAX_SURROUNDING_BOMBS) {
             this.surroundingBombs = pSurroundingBombs;
             return true;
         } else {
+            this.surroundingBombs = MIN_SURROUNDING_BOMBS;
             return false;
         }
     }
@@ -89,15 +90,12 @@ public class Cell {
      * Attempts to set this cell as a bomb. May already be a bomb and will fail
      * if this is the case.
      *
-     * @return Whether or not this cell was marked as a bomb successfully.
+     * @param pIsBomb The new bomb state of the cell.
+     * @return Updated state of cell.
      */
-    public boolean setBomb() {
-        if (isBomb) {
-            return false;
-        } else {
-            isBomb = true;
-            return true;
-        }
+    public boolean setBomb(final boolean pIsBomb) {
+        isBomb = pIsBomb;
+        return isBomb;
     }
 
     /**
@@ -112,16 +110,12 @@ public class Cell {
     /**
      * Toggles the state of the isFlagged variable, providing the updated state.
      *
-     * @param pFlagged The new flagged state of the cell.
-     * @return The new state of the variable after being updated.
+     * @param pIsFlagged The new flagged state of the cell.
+     * @return Updated state of the cell.
      */
-    public boolean setFlagged(final boolean pFlagged) {
-        if (isFlagged == pFlagged) {
-            return false;
-        } else {
-            isFlagged = pFlagged;
-            return true;
-        }
+    public boolean setFlagged(final boolean pIsFlagged) {
+        isFlagged = pIsFlagged;
+        return isFlagged;
     }
 
     /**
@@ -136,15 +130,11 @@ public class Cell {
     /**
      * Sets the revealed status of the cell to the specified status.
      *
-     * @param pRevealed The new status of the cell.
-     * @return Whether isRevealed was updated or not.
+     * @param pIsRevealed The new revealed state of the cell.
+     * @return Updated state of the cell.
      */
-    public boolean setRevealed(final boolean pRevealed) {
-        if (isRevealed == pRevealed) {
-            return false;
-        } else {
-            isRevealed = pRevealed;
-            return true;
-        }
+    public boolean setRevealed(final boolean pIsRevealed) {
+        isRevealed = pIsRevealed;
+        return isRevealed;
     }
 }
