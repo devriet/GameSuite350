@@ -93,6 +93,7 @@ public class MinesweeperGUI extends AppCompatActivity {
         }
 
         myLayout.addView(buttonLayout);
+        myLayout.requestFocus();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
