@@ -68,7 +68,7 @@ public class Home extends AppCompatActivity {
         mines.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                Intent start = new Intent(me, minesweeper.class);
+                Intent start = new Intent(me, MinesweeperGUI.class);
                 startActivity(start);
             }
         });

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/splash"
     android:fitsSystemWindows="true"
-    tools:context="timdevries.gamesuite350.minesweeper">
+    tools:context="timdevries.gamesuite350.MinesweeperGUI">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
