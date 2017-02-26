@@ -1,18 +1,22 @@
 package timdevries.gamesuite350;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import madsen.MinesweeperGame;
 
 /**
  *
  */
-public class MinesweeperGUI extends AppCompatActivity {
+public class MinesweeperGUI
+        extends AppCompatActivity
+        implements View.OnClickListener {
 
     /**
      * The game itself.
@@ -27,12 +31,18 @@ public class MinesweeperGUI extends AppCompatActivity {
     /**
      * Board size.
      */
-    private final int size = 5;
+    private final int size = 10;
+
 
     /**
-     * son of a beach tree.
+     * array of linear layouts holding rows of buttons.
      */
-    private RelativeLayout myLayout;
+    private LinearLayout[] rows;
+
+    /**
+     * This is the main view holder.
+     */
+    private LinearLayout myLayout;
 
     /**
      *
@@ -51,25 +61,60 @@ public class MinesweeperGUI extends AppCompatActivity {
         // Initializing board of buttons
         board = new Button[size][size];
 
-        // Layout of buttons
-        myLayout = (RelativeLayout) findViewById(R.id.content_minesweeper);
+        // Linear layout
+        myLayout = (LinearLayout) findViewById(R.id.linLay);
+        myLayout.setPadding(0, 0, 0, 0);
+
+        // Array of linear layouts (rows)
+        rows = new LinearLayout[size];
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT, 1
+        );
 
         // Creating the grid of buttons
-        for (int y = 0; y < game.getBoardHeight(); y++) {
-            for (int x = 0; x < game.getBoardWidth(); x++) {
-                board[y][x] = new Button(this);
-                myLayout.addView(board[y][x]);
-                board[y][x].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(final View v) {
+        for (int i = 0; i < size; i++) {
+            rows[i] = new LinearLayout(this);
+            rows[i].setOrientation(LinearLayout.VERTICAL);
+            myLayout.addView(rows[i]);
+        }
 
-                    }
-                });
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
+                board[y][x] = new Button(this);
+                board[y][x].setOnClickListener(this);
+                rows[y].addView(board[y][x]);
+            }
+        }
+        for (LinearLayout l : rows) {
+            l.setLayoutParams(params);
+            l.setPadding(0, 0, 0, 0);
+        }
+        for (Button[] a : board) {
+            for (Button b : a) {
+                b.setLayoutParams(params);
+                b.setPadding(0, 0, 0, 0);
             }
         }
 
-        this.
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    /**
+     *
+     * @param view
+     */
+    @Override
+    public void onClick(final View view) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j] == view) {
+                            Snackbar.make(view,
+                                    "i = " + i + " j = " + j,
+                                    Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                }
+            }
+        }
     }
 }
