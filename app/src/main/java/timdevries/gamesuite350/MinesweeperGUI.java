@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import madsen.MinesweeperGame;
@@ -26,7 +26,7 @@ public class MinesweeperGUI
     /**
      * The game board.
      */
-    private Button[][] board;
+    private ImageButton[][] board;
 
     /**
      * Width of game board.
@@ -69,7 +69,7 @@ public class MinesweeperGUI
         game = new MinesweeperGame();
 
         // Initializing board of buttons
-        board = new Button[WIDTH][HEIGHT];
+        board = new ImageButton[WIDTH][HEIGHT];
 
         // Linear layout
         myLayout = (LinearLayout) findViewById(R.id.linLay);
@@ -91,7 +91,7 @@ public class MinesweeperGUI
 
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
-                board[x][y] = new Button(this);
+                board[x][y] = new ImageButton(this);
                 board[x][y].setOnClickListener(this);
                 rows[y].addView(board[x][y]);
             }
@@ -100,11 +100,10 @@ public class MinesweeperGUI
             l.setLayoutParams(params);
             l.setPadding(0, 0, 0, 0);
         }
-        for (Button[] a : board) {
-            for (Button b : a) {
+        for (ImageButton[] a : board) {
+            for (ImageButton b : a) {
                 b.setLayoutParams(params);
-                b.setWidth(BUTTON_SIZE);
-                b.setHeight(BUTTON_SIZE);
+
                 b.setPadding(0, 0, 0, 0);
             }
         }
