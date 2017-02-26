@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import madsen.MinesweeperGame;
 
 /**
- *
+ * This is the primary launch activity for the minesweeper game.
  */
 public class MinesweeperGUI
         extends AppCompatActivity
