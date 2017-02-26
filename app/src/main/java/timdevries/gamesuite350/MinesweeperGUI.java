@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import madsen.MinesweeperGame;
 
 /**
- *
+ * Creates and manages the view of a MinesweeperGame.
  */
 public class MinesweeperGUI
         extends AppCompatActivity
@@ -29,13 +29,22 @@ public class MinesweeperGUI
     private Button[][] board;
 
     /**
-     * Board size.
+     * Width of game board.
      */
-    private final int size = 10;
-
+    private static final int WIDTH = 3;
 
     /**
-     * array of linear layouts holding rows of buttons.
+     * Height of game board.
+     */
+    private static final int HEIGHT = 5;
+
+    /**
+     * Pixel dimension of buttons.
+     */
+    private static final int BUTTON_SIZE = 100;
+
+    /**
+     * Array of linear layouts holding rows of buttons.
      */
     private LinearLayout[] rows;
 
@@ -45,8 +54,9 @@ public class MinesweeperGUI
     private LinearLayout myLayout;
 
     /**
+     * Handles the creation of a MinesweeperGUI object.
      *
-     * @param savedInstanceState
+     * @param savedInstanceState The state this view is creted within.
      */
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -59,31 +69,31 @@ public class MinesweeperGUI
         game = new MinesweeperGame();
 
         // Initializing board of buttons
-        board = new Button[size][size];
+        board = new Button[WIDTH][HEIGHT];
 
         // Linear layout
         myLayout = (LinearLayout) findViewById(R.id.linLay);
         myLayout.setPadding(0, 0, 0, 0);
 
         // Array of linear layouts (rows)
-        rows = new LinearLayout[size];
+        rows = new LinearLayout[HEIGHT];
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT, 1
         );
 
         // Creating the grid of buttons
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < HEIGHT; i++) {
             rows[i] = new LinearLayout(this);
             rows[i].setOrientation(LinearLayout.VERTICAL);
             myLayout.addView(rows[i]);
         }
 
-        for (int y = 0; y < size; y++) {
-            for (int x = 0; x < size; x++) {
-                board[y][x] = new Button(this);
-                board[y][x].setOnClickListener(this);
-                rows[y].addView(board[y][x]);
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
+                board[x][y] = new Button(this);
+                board[x][y].setOnClickListener(this);
+                rows[y].addView(board[x][y]);
             }
         }
         for (LinearLayout l : rows) {
@@ -93,6 +103,8 @@ public class MinesweeperGUI
         for (Button[] a : board) {
             for (Button b : a) {
                 b.setLayoutParams(params);
+                b.setWidth(BUTTON_SIZE);
+                b.setHeight(BUTTON_SIZE);
                 b.setPadding(0, 0, 0, 0);
             }
         }
@@ -101,8 +113,10 @@ public class MinesweeperGUI
     }
 
     /**
+     * Implementation of the onClick method for View. Determines which button
+     * was clicked and functions appropriately.
      *
-     * @param view
+     * @param view The current view of the game
      */
     @Override
     public void onClick(final View view) {
