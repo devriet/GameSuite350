@@ -2,6 +2,7 @@ package timdevries.gamesuite350;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -103,7 +104,9 @@ public class MinesweeperGUI
         for (ImageButton[] a : board) {
             for (ImageButton b : a) {
                 b.setLayoutParams(params);
-
+                b.setImageDrawable(
+                        ContextCompat.getDrawable(getApplicationContext(),
+                        R.drawable.minesweeper_3));
                 b.setPadding(0, 0, 0, 0);
             }
         }
