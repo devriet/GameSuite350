@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText6"
+                android:id="@+id/topLText"
                 android:background="@drawable/border"
                 android:layout_weight="1"
                 android:textAlignment="center" />
@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText5"
+                android:id="@+id/topMText"
                 android:background="@drawable/border"
                 android:layout_weight="1"
                 android:textAlignment="center" />
@@ -51,44 +51,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText8"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText7"
-                android:background="@drawable/border"
-                android:layout_weight="1"
-                android:textAlignment="center" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editText2"
+                android:id="@+id/topRText"
                 android:background="@drawable/border"
                 android:layout_weight="1"
                 android:textAlignment="center" />
@@ -105,7 +68,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText10"
+                android:id="@+id/centerLText"
                 android:background="@drawable/border"
                 android:layout_weight="1"
                 android:textAlignment="center" />
@@ -115,7 +78,7 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText9"
+                android:id="@+id/centerMText"
                 android:background="@drawable/border"
                 android:layout_weight="1"
                 android:textAlignment="center" />
@@ -125,7 +88,44 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText3"
+                android:id="@+id/centerRText"
+                android:background="@drawable/border"
+                android:layout_weight="1"
+                android:textAlignment="center" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/bottomLText"
+                android:background="@drawable/border"
+                android:layout_weight="1"
+                android:textAlignment="center" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/bottomMText"
+                android:background="@drawable/border"
+                android:layout_weight="1"
+                android:textAlignment="center" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/bottomRText"
                 android:background="@drawable/border"
                 android:layout_weight="1"
                 android:textAlignment="center" />
