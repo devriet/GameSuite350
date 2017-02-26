@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Game Suite 350</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_tictactoe">tictactoe</string>
+    <string name="title_activity_tictactoe">Tic Tac Toe</string>
     <string name="title_activity_minesweeper">minesweeper</string>
+    <string name="ttt_dialog_title">X or O?</string>
+    <string name="ttt_dialog_full_title">Spot Full</string>
+    <string name="ttt_dialog_full_msg">Choose another spot.</string>
 </resources>

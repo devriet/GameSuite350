@@ -16,6 +16,8 @@ class TTTPresenter {
      */
     public TTTPresenter(char piece) {
         TTTLogic tl = new TTTLogic(piece);
+
+
     }
 
     /**
@@ -27,9 +29,13 @@ class TTTPresenter {
      */
     public char[][] playGame(int x, int y) {
 
-        tl.placePiece(x, y);
+        if (tl.placePiece(x, y)) {
+            return tl.getBoard();
+        } else {
+            char[][] full = null;
+            return full;
+        }
 
-        return tl.getBoard();
 
     }
 }

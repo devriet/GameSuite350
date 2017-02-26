@@ -71,17 +71,15 @@ public class TTTLogic {
      * where the player wants to place their piece
      * @param y is the vertical coordinate of the space
      * where the player want to place their piece
-     * @return whether or not the piece was placed
+     * @return if the game is over
      */
     public boolean placePiece(final int x, final int y) {
 
         if (board[x][y] == ' ') {
             board[x][y] = playerChar;
-            isGameOver();
-            return true;
         }
 
-        return false;
+        return isGameOver();
     }
 
     /**
@@ -92,6 +90,7 @@ public class TTTLogic {
      */
     private boolean isGameOver() {
 
+        boardFull = true;
         for (char[] c: board) {
             for (char k: c) {
                 if (k == ' ') {
