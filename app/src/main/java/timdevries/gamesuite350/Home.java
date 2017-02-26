@@ -10,33 +10,33 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 /**
- * This is a frickin javadoc comment.
+ * This is the primary launch activity for the GameSuite350 app.
  */
 public class Home extends AppCompatActivity {
     /**
-     * This is a frickin javadoc comment.
+     * This is the button used to launch the tic tac toe game.
      */
     private Button tictac;
     /**
-     * This is a frickin javadoc comment.
+     * This is the button used to launch the minesweeper game.
      */
     private Button mines;
     /**
-     * This is a frickin javadoc comment.
+     * This is the button used to launch the connect4 game.
      */
     private Button connect;
     /**
-     * This is a frickin javadoc comment.
+     * This is the button used to launch the checkers game.
      */
     private Button checkers;
     /**
-     * This is a frickin javadoc comment.
+     * This contains a reference to itself.
      */
     private Activity me;
     /**
      *
      * final @param savedInstanceState
-     * This is a frickin javadoc comment.
+     * This method contains the code which runs on the activity's startup.
      */
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -90,9 +90,9 @@ public class Home extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param menu This is a frickin javadoc comment.
-     * @return
+     * This method creates the options menu in the toolbar.
+     * @param menu The menu which will be added to the toolbar
+     * @return returns true if the code finishes successfully.
      */
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
@@ -102,9 +102,9 @@ public class Home extends AppCompatActivity {
     }
 
     /**
-     *
-     * @param item This is a frickin javadoc comment.
-     * @return
+     * This method adds an item to the options menu.
+     * @param item An item to be added to the options menu
+     * @return returns true if the code finishes successfully.
      */
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
