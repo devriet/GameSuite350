@@ -1,4 +1,7 @@
-package madsen;
+package madsen.Logic;
+
+import madsen.Logic.Cell;
+import madsen.Logic.GameStatus;
 
 /**
  * A Minesweeper game that functions similarly to the original game with a few

@@ -2,7 +2,7 @@ package madsen.tests;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import madsen.MinesweeperGame;
+import madsen.Logic.MinesweeperGame;
 
 /**
  * A suite of tests designed to ensure proper functionality for the

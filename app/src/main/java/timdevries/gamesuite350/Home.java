@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import madsen.GUI.MinesweeperGUI;
+
 /**
  * This is a frickin javadoc comment.
  */

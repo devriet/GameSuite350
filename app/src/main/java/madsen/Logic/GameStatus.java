@@ -1,4 +1,4 @@
-package madsen;
+package madsen.Logic;
 
 /**
  * An enumeration of the multiple states that the game may be in.

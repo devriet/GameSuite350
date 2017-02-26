@@ -1,4 +1,4 @@
-package madsen;
+package madsen.Logic;
 
 /**
  * A representation of a cell located on the board of a MinesweeperGUI field.

@@ -1,4 +1,4 @@
-package timdevries.gamesuite350;
+package madsen.GUI;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,8 @@ import android.widget.GridLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 
-import madsen.MinesweeperGame;
+import madsen.Logic.MinesweeperGame;
+import timdevries.gamesuite350.R;
 
 /**
  *
