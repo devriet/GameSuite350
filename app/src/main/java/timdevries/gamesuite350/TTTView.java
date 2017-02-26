@@ -87,6 +87,7 @@ public class TTTView extends AppCompatActivity
 
         //Build the alert dialog box and make a new presenter
         //need this context line; may break app
+        //help for this was found at: https://developer.android.com/guide/topics/ui/dialogs.html
         Context c = this;
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(R.string.ttt_dialog_title)
