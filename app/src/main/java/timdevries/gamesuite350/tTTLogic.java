@@ -26,7 +26,7 @@ public class TTTLogic {
     private boolean boardFull;
     /**
      * A boolean that shows if the player has won the game.
-     * This is only true if the player has three of their chars in a row.
+     * This is only true if the player has minesweeper3 of their chars in a row.
      */
     private boolean haveWon;
     /**
@@ -87,7 +87,7 @@ public class TTTLogic {
     /**
      * A method that check if the game is over.
      * It calls a helper method to determine if there
-     * are three of the important chars in a row
+     * are minesweeper3 of the important chars in a row
      * @return true if game is over otherwise return false
      */
     private boolean isGameOver() {
@@ -108,13 +108,13 @@ public class TTTLogic {
     }
 
     /**
-     * This method returns false if there aren't three in a row.
+     * This method returns false if there aren't minesweeper3 in a row.
      * If there are it returns true
-     * @return if there are three in a row
+     * @return if there are minesweeper3 in a row
      */
     private boolean threeInRow() {
 
-        //Player wins with three in a row:
+        //Player wins with minesweeper3 in a row:
         // for every row see if the chars are the same all the
         // way across
         for (int i = 0; i < boardSize; i++) {
@@ -125,7 +125,7 @@ public class TTTLogic {
                 }
         }
 
-        //vertical three in a row/column
+        //vertical minesweeper3 in a row/column
         for (int i = 0; i < boardSize; i++) {
             if (board[0][i] == playerChar && board[1][i] == playerChar
                     && board[2][i] == playerChar) {
@@ -134,7 +134,7 @@ public class TTTLogic {
             }
         }
 
-        //Computer wins with three in a row:
+        //Computer wins with minesweeper3 in a row:
         // for every row see if the chars are the same all the
         // way across
         for (int i = 0; i < boardSize; i++) {
@@ -145,7 +145,7 @@ public class TTTLogic {
             }
         }
 
-        //vertical three in a row/column
+        //vertical minesweeper3 in a row/column
         for (int i = 0; i < boardSize; i++) {
             if (board[0][i] == playerChar && board[1][i] == playerChar
                     && board[2][i] == playerChar) {
@@ -153,7 +153,7 @@ public class TTTLogic {
                 return true;
             }
         }
-        // no three in a row
+        // no minesweeper3 in a row
         return false;
     }
 

@@ -9,13 +9,13 @@ package madsen.Logic;
 public class Cell {
     /**
      * Minimum number of bombs that may surround this cell in the 8 cells around
-     * this one and this cell.
+     * this minesweeper1 and this cell.
      */
     private static final int MIN_SURROUNDING_BOMBS = 0;
 
     /**
      * Maximum number of bombs that may surround this cell in the 8 cells around
-     * this one and this cell.
+     * this minesweeper1 and this cell.
      */
     private static final int MAX_SURROUNDING_BOMBS = 9;
 

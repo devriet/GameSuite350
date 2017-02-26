@@ -19,27 +19,29 @@ public class ViewCell extends View {
     private Cell cell;
 
     /**
-     * The x coordinate of this cell.
+     * The column of this cell.
      */
-    private int x;
+    private int column;
 
     /**
-     * The y coordinate of this cell.
+     * The row of this cell.
      */
-    private int y;
+    private int row;
 
     /**
      * This is the default constructor for a minesweeper cell.
      *
      * @param pCell The game cell this object is responsible for
-     * @param pX The x coordinate of this cell
-     * @param pY The y coordinate of this cell
-     * @param context The canvas this cell exists in
+     * @param pColumn The column coordinate of this cell
+     * @param pRow The row coordinate of this cell
+     * @param context The context this cell exists in
      */
-    public ViewCell(final Cell pCell, final int pX, final int pY,
+    public ViewCell(final Cell pCell, final int pColumn, final int pRow,
                     final Context context) {
         super(context);
         cell = pCell;
+        column = pColumn;
+        row = pRow;
     }
 
     /**
@@ -70,64 +72,82 @@ public class ViewCell extends View {
     }
 
     /**
-     * Draws the cell at its x and y coordinates.
+     * Provides the column of this cell.
+     *
+     * @return The column of this cell
+     */
+    public int getColumn() {
+        return column;
+    }
+
+    /**
+     * Provides the row of this cell.
+     *
+     * @return The row of this cell
+     */
+    public int getRow() {
+        return row;
+    }
+
+    /**
+     * Draws the cell at its column and row coordinates.
      *
      * @param canvas The canvas this cell should be drawn on
      */
-    //TODO checkstyle ignore magic numbers
-    // @cs-: MagicNumber
-    public void draw(final Canvas canvas) {
+    @Override
+    public void onDraw(final Canvas canvas) {
         Drawable d;
 
         if (cell.isRevealed()) {
             if (cell.isBomb()) {
-                d = ContextCompat.getDrawable(getContext(), R.drawable.bomb);
+                d = ContextCompat.getDrawable(getContext(),
+                        R.drawable.minesweeper_bomb);
             } else {
                 switch (cell.getSurroundingBombs()) {
                     case 1:
                         d = ContextCompat.getDrawable(getContext(),
-                                R.drawable.one);
+                                R.drawable.minesweeper_1);
                         break;
                     case 2:
                         d = ContextCompat.getDrawable(getContext(),
-                                R.drawable.two);
+                                R.drawable.minesweeper_2);
                         break;
                     case 3:
                         d = ContextCompat.getDrawable(getContext(),
-                                R.drawable.three);
+                                R.drawable.minesweeper_3);
                         break;
                     case 4:
                         d = ContextCompat.getDrawable(getContext(),
-                                R.drawable.four);
+                                R.drawable.minesweeper_4);
                         break;
                     case 5:
                         d = ContextCompat.getDrawable(getContext(),
-                                R.drawable.five);
+                                R.drawable.minesweeper_5);
                         break;
                     case 6:
                         d = ContextCompat.getDrawable(getContext(),
-                                R.drawable.six);
+                                R.drawable.minesweeper_6);
                         break;
                     case 7:
                         d = ContextCompat.getDrawable(getContext(),
-                                R.drawable.seven);
+                                R.drawable.minesweeper_7);
                         break;
                     case 8:
                         d = ContextCompat.getDrawable(getContext(),
-                                R.drawable.eight);
+                                R.drawable.minesweeper_8);
                         break;
                     default:
                         d = ContextCompat.getDrawable(getContext(),
-                                R.drawable.empty);
+                                R.drawable.minesweeper_empty);
                 }
             }
         } else {
             if (cell.isFlagged()) {
                 d = ContextCompat.getDrawable(getContext(),
-                        R.drawable.flag);
+                        R.drawable.minesweeper_flag);
             } else {
                 d = ContextCompat.getDrawable(getContext(),
-                        R.drawable.blank);
+                        R.drawable.minesweeper_blank);
             }
         }
 

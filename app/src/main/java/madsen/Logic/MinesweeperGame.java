@@ -281,7 +281,7 @@ public class MinesweeperGame {
     }
 
     /**
-     * Sets the state of the requested cell to the provided flag state.
+     * Sets the state of the requested cell to the provided minesweeperFlag state.
      *
      * @param x The column of the cell to toggle.
      * @param y The row of the cell to toggle.
