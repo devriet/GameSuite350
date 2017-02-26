@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Tictactoe"
+            android:name=".TTTView"
             android:label="@string/title_activity_tictactoe"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme.NoActionBar">
