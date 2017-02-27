@@ -77,7 +77,7 @@ public class TTTLogic {
      */
     public boolean placePiece(final int x, final int y) {
 
-        if (board[x][y] == ' ') {
+        if (board[x][y] == '*') {
             board[x][y] = playerChar;
         }
 
