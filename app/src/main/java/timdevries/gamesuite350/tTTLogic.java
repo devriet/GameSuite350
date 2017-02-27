@@ -97,7 +97,7 @@ public class TTTLogic {
 
         int x = r.nextInt(size);
         int y = a.nextInt(size);
-        if (board[x][y] == ' ') {
+        if (board[x][y] == '*') {
             board[x][y] = playerChar;
         }
     }
