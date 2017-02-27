@@ -1,7 +1,6 @@
 package timdevries.gamesuite350;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -40,6 +39,11 @@ public class MinesweeperGUI
     private static final int HEIGHT = 5;
 
     /**
+     * Bomb count for game.
+     */
+    private static final int BOMBS = 8;
+
+    /**
      * Pixel dimension of buttons.
      */
     private static final int BUTTON_SIZE = 100;
@@ -67,7 +71,7 @@ public class MinesweeperGUI
         setSupportActionBar(toolbar);
 
         // Creating a new game of MinesweeperGUI
-        game = new MinesweeperGame();
+        game = new MinesweeperGame(HEIGHT, WIDTH, BOMBS);
 
         // Initializing board of buttons
         board = new ImageButton[WIDTH][HEIGHT];
@@ -106,7 +110,7 @@ public class MinesweeperGUI
                 b.setLayoutParams(params);
                 b.setImageDrawable(
                         ContextCompat.getDrawable(getApplicationContext(),
-                        R.drawable.minesweeper_3));
+                                R.drawable.minesweeper_blank));
                 b.setPadding(0, 0, 0, 0);
             }
         }
@@ -125,10 +129,76 @@ public class MinesweeperGUI
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j] == view) {
-                            Snackbar.make(view,
-                                    "i = " + i + " j = " + j,
-                                    Snackbar.LENGTH_LONG)
-                                    .setAction("Action", null).show();
+//                            Snackbar.make(view,
+//                                    "i = " + i + " j = " + j,
+//                                    Snackbar.LENGTH_LONG)
+//                                    .setAction("Action", null).show();
+                    if (game.getCell(i, j).isFlagged()) {
+                        // Do nothing
+                        break;
+                    }
+
+                    if (game.getCell(i, j).isBomb()) {
+                        board[i][j].setImageDrawable(
+                                ContextCompat.getDrawable(
+                                        getApplicationContext(),
+                                        R.drawable.minesweeper_bomb));
+                    } else {
+                        switch (game.getCell(i, j).getSurroundingBombs()) {
+                            case 1:
+                                board[i][j].setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                getApplicationContext(),
+                                                R.drawable.minesweeper_1));
+                                break;
+                            case 2:
+                                board[i][j].setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                getApplicationContext(),
+                                                R.drawable.minesweeper_2));
+                                break;
+                            case 3:
+                                board[i][j].setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                getApplicationContext(),
+                                                R.drawable.minesweeper_3));
+                                break;
+                            case 4:
+                                board[i][j].setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                getApplicationContext(),
+                                                R.drawable.minesweeper_4));
+                                break;
+                            case 5:
+                                board[i][j].setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                getApplicationContext(),
+                                                R.drawable.minesweeper_5));
+                                break;
+                            case 6:
+                                board[i][j].setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                getApplicationContext(),
+                                                R.drawable.minesweeper_6));
+                                break;
+                            case 7:
+                                board[i][j].setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                getApplicationContext(),
+                                                R.drawable.minesweeper_7));
+                            case 8:
+                                board[i][j].setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                getApplicationContext(),
+                                                R.drawable.minesweeper_8));
+                                break;
+                            default:
+                                board[i][j].setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                getApplicationContext(),
+                                                R.drawable.minesweeper_empty));
+                        }
+                    }
                 }
             }
         }

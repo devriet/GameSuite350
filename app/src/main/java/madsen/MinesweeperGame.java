@@ -259,13 +259,13 @@ public class MinesweeperGame {
                 for (int dx = x - 1; dx <= x + 1; dx++) {
                     for (int dy = y - 1; dy <= y + 1; dy++) {
                         // Skip if accessing outside the board.
-                        if (0 < dx || dx < boardWidth
-                                || 0 < dy || dy < boardHeight) {
+                        if (0 > x + dx || x + dx >= boardWidth
+                                || 0 > y + dy || y + dy >= boardHeight) {
                             continue;
                         }
 
                         // Incrementing neighbor count of bombs
-                        if (getCell(dx, dy).isBomb()) {
+                        if (getCell(x + dx, y + dy).isBomb()) {
                             neighborCount++;
                         }
                     }
