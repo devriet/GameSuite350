@@ -69,8 +69,7 @@ public class TTTView extends AppCompatActivity
     /**
      * The array of views for easy board update.
      */
-    private TextView[] board = {topLeft, topMiddle, topRight, centerLeft,
-            centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight};
+    private TextView[] board;
 
     /**
      * Sets up the view for the android screen.
@@ -104,10 +103,11 @@ public class TTTView extends AppCompatActivity
                             }
                         });
         builder.create();
+        builder.show();
 
         tp = new TTTPresenter('X');
 
-        //Connect the EditTexts to this class from the android
+        //Connect the TextViews to this class from the android
         topLeft = (TextView) findViewById(R.id.topLText);
         topMiddle = (TextView) findViewById(R.id.topMText);
         topRight = (TextView) findViewById(R.id.topRText);
@@ -129,6 +129,19 @@ public class TTTView extends AppCompatActivity
         bottomMiddle.setOnClickListener(this);
         bottomRight.setOnClickListener(this);
 
+        //set the board
+        board = new TextView[]{topLeft, topMiddle, topRight, centerLeft,
+                centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight};
+
+        setGame();
+
+    }
+
+    /**
+     * sets up the game
+     */
+    private void setGame() {
+        updateBoard(tp.getBoard());
     }
 
     /**
@@ -140,103 +153,74 @@ public class TTTView extends AppCompatActivity
     @Override
     public void onClick(final View view) {
         //the game board
-        final char[][] b;
+        char[][] b;
+
+        boolean gameOver = false;
 
         //Dialog for if spot has a piece already
         Context c = this;
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(R.string.ttt_dialog_full_title)
                 .setMessage(R.string.ttt_dialog_full_msg);
+        builder.create();
 
         if (view == topLeft) {
 
-            b = tp.playGame(0, 0);
-            if (b == null) {
-                builder.create();
-
-            } else {
-                updateBoard(b);
-            }
+            gameOver = tp.playGame(0, 0);
+            b = tp.getBoard();
+            updateBoard(b);
 
         } else if (view == topMiddle) {
 
-            b = tp.playGame(0, 1);
-            if (b == null) {
-                builder.create();
-
-            } else {
-                updateBoard(b);
-            }
+            gameOver = tp.playGame(0, 1);
+            b = tp.getBoard();
+            updateBoard(b);
 
         } else if (view == topRight) {
 
-            b = tp.playGame(0, 2);
-            if (b == null) {
-                builder.create();
-
-            } else {
-                updateBoard(b);
-            }
+            gameOver = tp.playGame(0, 2);
+            b = tp.getBoard();
+            updateBoard(b);
 
         } else if (view == centerLeft) {
 
-            b = tp.playGame(1, 0);
-            if (b == null) {
-                builder.create();
-
-            } else {
-                updateBoard(b);
-            }
+            gameOver = tp.playGame(1, 0);
+            b = tp.getBoard();
+            updateBoard(b);
 
         } else if (view == centerMiddle) {
 
-            b = tp.playGame(1, 1);
-            if (b == null) {
-                builder.create();
-
-            } else {
-                updateBoard(b);
-            }
+            gameOver = tp.playGame(1, 1);
+            b = tp.getBoard();
+            updateBoard(b);
 
         } else if (view == centerRight) {
 
-            b = tp.playGame(1, 2);
-            if (b == null) {
-                builder.create();
-
-            } else {
-                updateBoard(b);
-            }
+            gameOver = tp.playGame(1, 2);
+            b = tp.getBoard();
+            updateBoard(b);
 
         } else if (view == bottomLeft) {
 
-            b = tp.playGame(2, 0);
-            if (b == null) {
-                builder.create();
-
-            } else {
-                updateBoard(b);
-            }
+            gameOver = tp.playGame(2, 0);
+            b = tp.getBoard();
+            updateBoard(b);
 
         } else if (view == bottomMiddle) {
 
-            b = tp.playGame(2, 1);
-            if (b == null) {
-                builder.create();
-
-            } else {
-                updateBoard(b);
-            }
+            gameOver = tp.playGame(2, 1);
+            b = tp.getBoard();
+            updateBoard(b);
 
         } else if (view == bottomRight) {
 
-            b = tp.playGame(2, 2);
-            if (b == null) {
-                builder.create();
+            gameOver = tp.playGame(2, 2);
+            b = tp.getBoard();
+            updateBoard(b);
+        }
 
-            } else {
-                updateBoard(b);
-            }
+        if (gameOver) {
+            System.out.println("GAME OVER");
         }
 
     }
@@ -253,11 +237,12 @@ public class TTTView extends AppCompatActivity
 
         for (char[] c : b) {
             for (char k : c) {
-
-                board[x].setText(k);
+                String s = Character.toString(k);
+                board[x].setText(s);
                 x++;
             }
         }
     }
+
 
 }

@@ -1,5 +1,7 @@
 package timdevries.gamesuite350;
 
+import java.util.Random;
+
 /**
  * Created by Matt Johnson on 1/20/2017.
  * @author Matt Johnson
@@ -58,7 +60,7 @@ public class TTTLogic {
 
         for (int i = 0; i < boardSize; i++) {
             for (int k = 0; k < boardSize; k++) {
-                board[i][k] = ' ';
+                board[i][k] = '*';
             }
         }
     }
@@ -79,7 +81,25 @@ public class TTTLogic {
             board[x][y] = playerChar;
         }
 
+        placeCompPiece();
+
         return isGameOver();
+    }
+
+    /**
+     * The computer's turn.
+     */
+    private void placeCompPiece() {
+        Random r = new Random();
+        Random a = new Random();
+
+        int size = 3;
+
+        int x = r.nextInt(size);
+        int y = a.nextInt(size);
+        if (board[x][y] == ' ') {
+            board[x][y] = playerChar;
+        }
     }
 
     /**
@@ -168,7 +188,14 @@ public class TTTLogic {
      */
     public char[][] getBoard()   {
         char[][] cboard;
-        cboard = board.clone();
+        cboard = board;
         return cboard;
+    }
+
+    /**
+     * @return the player win or not
+     */
+    protected boolean hasWon() {
+        return haveWon;
     }
 }
