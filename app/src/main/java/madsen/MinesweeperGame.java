@@ -273,6 +273,7 @@ public class MinesweeperGame {
 
                 // Setting surrounding bombs of the cell
                 getCell(x, y).setSurroundingBombs(neighborCount);
+                System.out.println(neighborCount);
             }
         }
     }
