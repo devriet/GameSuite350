@@ -185,6 +185,7 @@ public class MinesweeperGUI
                                         ContextCompat.getDrawable(
                                                 getApplicationContext(),
                                                 R.drawable.minesweeper_7));
+                                break;
                             case 8:
                                 board[y][x].setImageDrawable(
                                         ContextCompat.getDrawable(
