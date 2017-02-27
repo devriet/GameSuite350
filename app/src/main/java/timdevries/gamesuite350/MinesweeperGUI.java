@@ -5,7 +5,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -36,7 +35,7 @@ public class MinesweeperGUI
     /**
      * Height of game board.
      */
-    private static final int HEIGHT = 5;
+    private static final int HEIGHT = 3;
 
     /**
      * Bomb count for game.
@@ -74,7 +73,7 @@ public class MinesweeperGUI
         game = new MinesweeperGame(HEIGHT, WIDTH, BOMBS);
 
         // Initializing board of buttons
-        board = new ImageButton[WIDTH][HEIGHT];
+        board = new ImageButton[HEIGHT][WIDTH];
 
         // Linear layout
         myLayout = (LinearLayout) findViewById(R.id.linLay);
@@ -82,36 +81,36 @@ public class MinesweeperGUI
 
         // Array of linear layouts (rows)
         rows = new LinearLayout[HEIGHT];
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT, 1
-        );
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT, 1
+//        );
 
         // Creating the grid of buttons
-        for (int i = 0; i < HEIGHT; i++) {
-            rows[i] = new LinearLayout(this);
-            rows[i].setOrientation(LinearLayout.VERTICAL);
-            myLayout.addView(rows[i]);
+        for (int y = 0; y < HEIGHT; y++) {
+            rows[y] = new LinearLayout(this);
+            rows[y].setOrientation(LinearLayout.HORIZONTAL);
+            myLayout.addView(rows[y]);
         }
 
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
-                board[x][y] = new ImageButton(this);
-                board[x][y].setOnClickListener(this);
-                rows[y].addView(board[x][y]);
+                board[y][x] = new ImageButton(this);
+                board[y][x].setOnClickListener(this);
+                rows[y].addView(board[y][x]);
             }
         }
         for (LinearLayout l : rows) {
-            l.setLayoutParams(params);
+//            l.setLayoutParams(params);
             l.setPadding(0, 0, 0, 0);
         }
-        for (ImageButton[] a : board) {
-            for (ImageButton b : a) {
-                b.setLayoutParams(params);
-                b.setImageDrawable(
+        for (ImageButton[] y : board) {
+            for (ImageButton x : y) {
+//                x.setLayoutParams(params);
+                x.setImageDrawable(
                         ContextCompat.getDrawable(getApplicationContext(),
                                 R.drawable.minesweeper_blank));
-                b.setPadding(0, 0, 0, 0);
+                x.setPadding(0, 0, 0, 0);
             }
         }
 
@@ -126,74 +125,74 @@ public class MinesweeperGUI
      */
     @Override
     public void onClick(final View view) {
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                if (board[i][j] == view) {
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board[y].length; x++) {
+                if (board[y][x] == view) {
 //                            Snackbar.make(view,
-//                                    "i = " + i + " j = " + j,
+//                                    "y = " + y + " x = " + x,
 //                                    Snackbar.LENGTH_LONG)
 //                                    .setAction("Action", null).show();
-                    if (game.getCell(i, j).isFlagged()) {
+                    if (game.getCell(y, x).isFlagged()) {
                         // Do nothing
                         break;
                     }
 
-                    if (game.getCell(i, j).isBomb()) {
-                        board[i][j].setImageDrawable(
+                    if (game.getCell(y, x).isBomb()) {
+                        board[y][x].setImageDrawable(
                                 ContextCompat.getDrawable(
                                         getApplicationContext(),
                                         R.drawable.minesweeper_bomb));
                     } else {
-                        switch (game.getCell(i, j).getSurroundingBombs()) {
+                        switch (game.getCell(y, x).getSurroundingBombs()) {
                             case 1:
-                                board[i][j].setImageDrawable(
+                                board[y][x].setImageDrawable(
                                         ContextCompat.getDrawable(
                                                 getApplicationContext(),
                                                 R.drawable.minesweeper_1));
                                 break;
                             case 2:
-                                board[i][j].setImageDrawable(
+                                board[y][x].setImageDrawable(
                                         ContextCompat.getDrawable(
                                                 getApplicationContext(),
                                                 R.drawable.minesweeper_2));
                                 break;
                             case 3:
-                                board[i][j].setImageDrawable(
+                                board[y][x].setImageDrawable(
                                         ContextCompat.getDrawable(
                                                 getApplicationContext(),
                                                 R.drawable.minesweeper_3));
                                 break;
                             case 4:
-                                board[i][j].setImageDrawable(
+                                board[y][x].setImageDrawable(
                                         ContextCompat.getDrawable(
                                                 getApplicationContext(),
                                                 R.drawable.minesweeper_4));
                                 break;
                             case 5:
-                                board[i][j].setImageDrawable(
+                                board[y][x].setImageDrawable(
                                         ContextCompat.getDrawable(
                                                 getApplicationContext(),
                                                 R.drawable.minesweeper_5));
                                 break;
                             case 6:
-                                board[i][j].setImageDrawable(
+                                board[y][x].setImageDrawable(
                                         ContextCompat.getDrawable(
                                                 getApplicationContext(),
                                                 R.drawable.minesweeper_6));
                                 break;
                             case 7:
-                                board[i][j].setImageDrawable(
+                                board[y][x].setImageDrawable(
                                         ContextCompat.getDrawable(
                                                 getApplicationContext(),
                                                 R.drawable.minesweeper_7));
                             case 8:
-                                board[i][j].setImageDrawable(
+                                board[y][x].setImageDrawable(
                                         ContextCompat.getDrawable(
                                                 getApplicationContext(),
                                                 R.drawable.minesweeper_8));
                                 break;
                             default:
-                                board[i][j].setImageDrawable(
+                                board[y][x].setImageDrawable(
                                         ContextCompat.getDrawable(
                                                 getApplicationContext(),
                                                 R.drawable.minesweeper_empty));

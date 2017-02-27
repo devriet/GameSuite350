@@ -188,11 +188,11 @@ public class MinesweeperGame {
      * An accessor method that allows the caller to get a cell from
      * the game board.
      *
-     * @param x The column of the cell requested.
      * @param y The row of the cell requested.
+     * @param x The column of the cell requested.
      * @return The cell requested or null if improper cell accessed.
      */
-    public Cell getCell(final int x, final int y) {
+    public Cell getCell(final int y, final int x) {
         Cell c = null;
 
         if (0 <= x && x < boardWidth && 0 <= y && y < boardHeight) {
@@ -211,9 +211,9 @@ public class MinesweeperGame {
     private void initializeBoard(final int height, final int width) {
         board = new Cell[height][width];
 
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                board[i][j] = new Cell();
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                board[y][x] = new Cell();
             }
         }
     }
@@ -233,8 +233,8 @@ public class MinesweeperGame {
             y = r.nextInt(boardHeight);
             x = r.nextInt(boardWidth);
 
-            if (!getCell(x, y).isBomb()) {
-                getCell(x, y).setBomb(true);
+            if (!getCell(y, x).isBomb()) {
+                getCell(y, x).setBomb(true);
                 numPlaced++;
             }
         }
@@ -243,37 +243,41 @@ public class MinesweeperGame {
     }
 
     /**
-     * Iterates across all cell in the game board and sets the surrounding
+     * Iterates across all cells in the game board and sets the surrounding
      * mine count of each cell to the appropriate value.
      */
     private void setBombCounts() {
         int neighborCount;
 
         // Iterating through all board cells
-        for (int x = 0; x < boardWidth; x++) {
-            for (int y = 0; y < boardHeight; y++) {
+        for (int y = 0; y < boardHeight; y++) {
+            for (int x = 0; x < boardWidth; x++) {
                 neighborCount = 0;
 
                 // Iterating through surrounding cells and counting number
                 // that are bombs.
-                for (int dx = x - 1; dx <= x + 1; dx++) {
-                    for (int dy = y - 1; dy <= y + 1; dy++) {
+                for (int dY = y - 1; dY <= y + 1; dY++) {
+                    for (int dX = x - 1; dX <= x + 1; dX++) {
                         // Skip if accessing outside the board.
-                        if (0 > x + dx || x + dx >= boardWidth
-                                || 0 > y + dy || y + dy >= boardHeight) {
+                        if (0 > dX || dX >= boardWidth
+                                || 0 > dY || dY >= boardHeight) {
                             continue;
                         }
 
                         // Incrementing neighbor count of bombs
-                        if (getCell(x + dx, y + dy).isBomb()) {
+                        if (getCell(dY, dX).isBomb()) {
                             neighborCount++;
                         }
                     }
                 }
 
                 // Setting surrounding bombs of the cell
-                getCell(x, y).setSurroundingBombs(neighborCount);
-                System.out.println(neighborCount);
+                getCell(y, x).setSurroundingBombs(neighborCount);
+                //FIXME Remove
+                System.out.println("y=" + y + " x=" + x
+                        + " count= " + neighborCount
+                        + " Actual=" + getCell(y, x).getSurroundingBombs()
+                        + " isBomb=" + getCell(y, x).isBomb());
             }
         }
     }
@@ -281,13 +285,13 @@ public class MinesweeperGame {
     /**
      * Sets the state of the requested cell to the provided flag state.
      *
-     * @param x The column of the cell to toggle.
      * @param y The row of the cell to toggle.
+     * @param x The column of the cell to toggle.
      * @param flagged Whether the cell is flagged.
      * @return Whether the cell was successfully updated.
      */
-    public boolean setFlagged(final int x, final int y, final boolean flagged) {
-        Cell c = getCell(x, y);
+    public boolean setFlagged(final int y, final int x, final boolean flagged) {
+        Cell c = getCell(y, x);
         boolean updated = false;
 
         if (c != null) {
@@ -309,15 +313,15 @@ public class MinesweeperGame {
      * Reveals the cell indicated by its x and y terms. Will only reveal cells
      * that are not flagged and not already revealed.
      *
-     * @param x The column of the cell to reveal.
      * @param y The row of the cell to reveal.
+     * @param x The column of the cell to reveal.
      * @return If a cell was successfully revealed.
      */
-    public boolean revealCell(final int x, final int y) {
+    public boolean revealCell(final int y, final int x) {
         //TODO If '?' cell is added, update this expression to check
         // Checks that cell being accessed exists on the board and isn't flagged
         // or already revealed
-        Cell c = getCell(x, y);
+        Cell c = getCell(y, x);
 
         if (c == null || c.isFlagged() || c.isRevealed()) {
             return false;
@@ -333,9 +337,9 @@ public class MinesweeperGame {
                 if (numFlagged == numBombs) {
                     status = GameStatus.WIN;
 
-                    for (int py = 0; py < boardHeight; py++) {
-                        for (int px = 0; px < boardWidth; px++) {
-                            if (!getCell(px, py).isRevealed()) {
+                    for (int pY = 0; pY < boardHeight; pY++) {
+                        for (int pX = 0; pX < boardWidth; pX++) {
+                            if (!getCell(pY, pX).isRevealed()) {
                                 //Not all cells are revealed and game should
                                 //continue.
                                 status = GameStatus.RUNNING;
@@ -350,7 +354,7 @@ public class MinesweeperGame {
                 }
             }
 
-            if (getCell(x, y).getSurroundingBombs() == 0) {
+            if (getCell(y, x).getSurroundingBombs() == 0) {
                 revealSurroundingCells(x, y);
             }
 
@@ -366,15 +370,16 @@ public class MinesweeperGame {
      * @param y The row of the starting cell.
      */
     private void revealSurroundingCells(final int x, final int y) {
-        for (int dy = y - 1; dy <= y + 1; dy++) {
-            for (int dx = x - 1; dx <= x + 1; dx++) {
+        for (int dY = y - 1; dY <= y + 1; dY++) {
+            for (int dX = x - 1; dX <= x + 1; dX++) {
                 // Checking that the empty cell expansion does not access
                 // outside of board or already revealed cells.
-                if (getCell(dx, dy) == null || getCell(dx, dy).isRevealed()) {
+                if (getCell(y + dY, x + dX) == null
+                        || getCell(y + dY, x + dX).isRevealed()) {
                     continue;
                 }
 
-                revealCell(dx, dy);
+                revealCell(dY, dX);
             }
         }
     }
@@ -385,7 +390,7 @@ public class MinesweeperGame {
     private void revealBoard() {
         for (int y = 0; y < boardHeight; y++) {
             for (int x = 0; x < boardWidth; x++) {
-                getCell(x, y).setRevealed(true);
+                getCell(y, x).setRevealed(true);
             }
         }
     }

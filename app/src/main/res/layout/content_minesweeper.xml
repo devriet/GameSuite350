@@ -14,8 +14,8 @@
     tools:showIn="@layout/activity_minesweeper">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent"
-        android:id="@+id/linLay"></LinearLayout>
+        android:id="@+id/linLay"
+        android:layout_width="match_parent"></LinearLayout>
 </RelativeLayout>
