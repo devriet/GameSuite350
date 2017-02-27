@@ -13,9 +13,11 @@
     tools:context="timdevries.gamesuite350.MinesweeperGUI"
     tools:showIn="@layout/activity_minesweeper">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_height="match_parent"
-        android:id="@+id/linLay"
-        android:layout_width="match_parent"></LinearLayout>
+    <GridLayout
+        android:id="@+id/minesweeperGrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </GridLayout>
+
 </RelativeLayout>

@@ -43,7 +43,7 @@ public class Cell {
      * The default constructor of a cell object. It initializes all variables
      * to base values.
      */
-    public Cell() {
+    Cell() {
         surroundingBombs = 0;
         isBomb = false;
         isFlagged = false;
@@ -66,7 +66,7 @@ public class Cell {
      *                          cell.
      * @return Whether surroundingBombs was set the the specified value.
      */
-    public boolean setSurroundingBombs(final int pSurroundingBombs) {
+    final boolean setSurroundingBombs(final int pSurroundingBombs) {
         if (MIN_SURROUNDING_BOMBS <= pSurroundingBombs
                 && pSurroundingBombs <= MAX_SURROUNDING_BOMBS) {
             this.surroundingBombs = pSurroundingBombs;
@@ -93,7 +93,7 @@ public class Cell {
      * @param pIsBomb The new bomb state of the cell.
      * @return Updated state of cell.
      */
-    public boolean setBomb(final boolean pIsBomb) {
+    final boolean setBomb(final boolean pIsBomb) {
         isBomb = pIsBomb;
         return isBomb;
     }
@@ -113,7 +113,7 @@ public class Cell {
      * @param pIsFlagged The new flagged state of the cell.
      * @return Updated state of the cell.
      */
-    public boolean setFlagged(final boolean pIsFlagged) {
+    final boolean setFlagged(final boolean pIsFlagged) {
         isFlagged = pIsFlagged;
         return isFlagged;
     }
@@ -133,7 +133,7 @@ public class Cell {
      * @param pIsRevealed The new revealed state of the cell.
      * @return Updated state of the cell.
      */
-    public boolean setRevealed(final boolean pIsRevealed) {
+    final boolean setRevealed(final boolean pIsRevealed) {
         isRevealed = pIsRevealed;
         return isRevealed;
     }

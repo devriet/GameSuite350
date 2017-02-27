@@ -1,12 +1,14 @@
 package timdevries.gamesuite350;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 import madsen.MinesweeperGame;
 
@@ -35,7 +37,7 @@ public class MinesweeperGUI
     /**
      * Height of game board.
      */
-    private static final int HEIGHT = 3;
+    private static final int HEIGHT = 5;
 
     /**
      * Bomb count for game.
@@ -45,17 +47,7 @@ public class MinesweeperGUI
     /**
      * Pixel dimension of buttons.
      */
-    private static final int BUTTON_SIZE = 100;
-
-    /**
-     * Array of linear layouts holding rows of buttons.
-     */
-    private LinearLayout[] rows;
-
-    /**
-     * This is the main view holder.
-     */
-    private LinearLayout myLayout;
+    private int buttonSize;
 
     /**
      * Handles the creation of a MinesweeperGUI object.
@@ -75,42 +67,55 @@ public class MinesweeperGUI
         // Initializing board of buttons
         board = new ImageButton[HEIGHT][WIDTH];
 
-        // Linear layout
-        myLayout = (LinearLayout) findViewById(R.id.linLay);
+        // Grid layout
+        GridLayout myLayout = (GridLayout) findViewById(R.id.minesweeperGrid);
+        myLayout.setRowCount(HEIGHT);
+        myLayout.setColumnCount(WIDTH);
         myLayout.setPadding(0, 0, 0, 0);
 
-        // Array of linear layouts (rows)
-        rows = new LinearLayout[HEIGHT];
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.MATCH_PARENT, 1
-//        );
+        // This sets the size of game board buttons after rendering
+        findViewById(R.id.content_minesweeper).post(new Runnable() {
+            @Override
+            public void run() {
+                Point size = new Point();
+                getWindowManager().getDefaultDisplay().getSize(size);
 
-        // Creating the grid of buttons
-        for (int y = 0; y < HEIGHT; y++) {
-            rows[y] = new LinearLayout(this);
-            rows[y].setOrientation(LinearLayout.HORIZONTAL);
-            myLayout.addView(rows[y]);
-        }
+                int xSize = size.x / WIDTH;
+                int h = findViewById(R.id.content_minesweeper).getHeight();
+                int ySize = h / HEIGHT;
+
+                if (size.x * HEIGHT <= h) {
+                    buttonSize = xSize;
+                } else {
+                    buttonSize = ySize;
+                }
+
+                ViewGroup.LayoutParams params;
+                for (int y = 0; y < HEIGHT; y++) {
+                    for (int x = 0; x < WIDTH; x++) {
+                        params = board[y][x].getLayoutParams();
+                        params.height = buttonSize;
+                        params.width = buttonSize;
+                        board[y][x].setLayoutParams(params);
+                    }
+                }
+            }
+        });
 
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
                 board[y][x] = new ImageButton(this);
                 board[y][x].setOnClickListener(this);
-                rows[y].addView(board[y][x]);
+                myLayout.addView(board[y][x]);
             }
         }
-        for (LinearLayout l : rows) {
-//            l.setLayoutParams(params);
-            l.setPadding(0, 0, 0, 0);
-        }
-        for (ImageButton[] y : board) {
-            for (ImageButton x : y) {
-//                x.setLayoutParams(params);
-                x.setImageDrawable(
+
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
+                board[y][x].setImageDrawable(
                         ContextCompat.getDrawable(getApplicationContext(),
                                 R.drawable.minesweeper_blank));
-                x.setPadding(0, 0, 0, 0);
+                board[y][x].setPadding(0, 0, 0, 0);
             }
         }
 

@@ -273,11 +273,6 @@ public class MinesweeperGame {
 
                 // Setting surrounding bombs of the cell
                 getCell(y, x).setSurroundingBombs(neighborCount);
-                //FIXME Remove
-                System.out.println("y=" + y + " x=" + x
-                        + " count= " + neighborCount
-                        + " Actual=" + getCell(y, x).getSurroundingBombs()
-                        + " isBomb=" + getCell(y, x).isBomb());
             }
         }
     }
@@ -318,7 +313,6 @@ public class MinesweeperGame {
      * @return If a cell was successfully revealed.
      */
     public boolean revealCell(final int y, final int x) {
-        //TODO If '?' cell is added, update this expression to check
         // Checks that cell being accessed exists on the board and isn't flagged
         // or already revealed
         Cell c = getCell(y, x);
@@ -380,17 +374,6 @@ public class MinesweeperGame {
                 }
 
                 revealCell(dY, dX);
-            }
-        }
-    }
-
-    /**
-     * A helper method to reveal the entire game board.
-     */
-    private void revealBoard() {
-        for (int y = 0; y < boardHeight; y++) {
-            for (int x = 0; x < boardWidth; x++) {
-                getCell(y, x).setRevealed(true);
             }
         }
     }
