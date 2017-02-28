@@ -73,17 +73,17 @@ public class TTTLogic {
      * where the player wants to place their piece
      * @param y is the vertical coordinate of the space
      * where the player want to place their piece
-     * @return if the game is over
+     * @return true if the game is over
      */
     public boolean placePiece(final int x, final int y) {
 
         if (board[x][y] == '*') {
             board[x][y] = playerChar;
+            placeCompPiece();
+            return true;
         }
 
-        placeCompPiece();
-
-        return isGameOver();
+        return false;
     }
 
     /**
@@ -94,11 +94,16 @@ public class TTTLogic {
         Random a = new Random();
 
         int size = 3;
+        int limiter = 0;
+        while (!boardFull && limiter < 10) {
+            int x = r.nextInt(size);
+            int y = a.nextInt(size);
+            if (board[x][y] == '*') {
+                board[x][y] = compChar;
+                break;
+            }
 
-        int x = r.nextInt(size);
-        int y = a.nextInt(size);
-        if (board[x][y] == '*') {
-            board[x][y] = playerChar;
+            limiter++;
         }
     }
 
@@ -108,12 +113,12 @@ public class TTTLogic {
      * are three of the important chars in a row
      * @return true if game is over otherwise return false
      */
-    private boolean isGameOver() {
+    boolean isGameOver() {
 
         boardFull = true;
         for (char[] c: board) {
             for (char k: c) {
-                if (k == ' ') {
+                if (k == '*') {
                     boardFull = false;
                 }
             }
@@ -137,8 +142,8 @@ public class TTTLogic {
         // for every row see if the chars are the same all the
         // way across
         for (int i = 0; i < boardSize; i++) {
-                if (board[i][0] == playerChar && board[i][1] == playerChar
-                        && board[i][2] == playerChar) {
+            if ((board[i][0] == playerChar) && (board[i][1] == playerChar)
+                    && (board[i][2] == playerChar)) {
                     haveWon = true;
                     return true;
                 }
@@ -146,8 +151,8 @@ public class TTTLogic {
 
         //vertical three in a row/column
         for (int i = 0; i < boardSize; i++) {
-            if (board[0][i] == playerChar && board[1][i] == playerChar
-                    && board[2][i] == playerChar) {
+            if ((board[0][i] == playerChar) && (board[1][i] == playerChar)
+                    && (board[2][i] == playerChar)) {
                 haveWon = true;
                 return true;
             }
@@ -157,9 +162,9 @@ public class TTTLogic {
         // for every row see if the chars are the same all the
         // way across
         for (int i = 0; i < boardSize; i++) {
-            if (board[i][0] == playerChar && board[i][1] == playerChar
-                    && board[i][2] == playerChar) {
-                haveWon = true;
+            if ((board[i][0] == playerChar) && (board[i][1] == playerChar)
+                    && (board[i][2] == playerChar)) {
+                haveWon = false;
                 return true;
             }
         }
@@ -168,10 +173,39 @@ public class TTTLogic {
         for (int i = 0; i < boardSize; i++) {
             if (board[0][i] == playerChar && board[1][i] == playerChar
                     && board[2][i] == playerChar) {
-                haveWon = true;
+                haveWon = false;
                 return true;
             }
         }
+
+        //diagonal player win
+        if (board[0][0] == playerChar && board[1][1] == playerChar
+                && board[2][2] == playerChar) {
+            haveWon = true;
+            return true;
+        }
+
+        //diagonal comp win
+        if (board[0][0] == compChar && board[1][1] == compChar
+                && board[2][2] == compChar) {
+            haveWon = false;
+            return true;
+        }
+
+        //diagonal player win
+        if (board[0][2] == playerChar && board[1][1] == playerChar
+                && board[2][0] == playerChar) {
+            haveWon = true;
+            return true;
+        }
+
+        //diagonal comp win
+        if (board[0][2] == compChar && board[1][1] == compChar
+                && board[2][0] == compChar) {
+            haveWon = false;
+            return true;
+        }
+
         // no three in a row
         return false;
     }
