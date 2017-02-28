@@ -1,4 +1,4 @@
-package madsen.tests;
+package timdevries.gamesuite350;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -10,10 +10,64 @@ import madsen.MinesweeperGame;
  *
  * @author Troy Madsen
  */
-public class MinesweeperUnitTests {
+public class UnitTests {
     private final static int BOARD_HEIGHT = 4;
     private final static int BOARD_WIDTH = 3;
     private final static int BOMB_COUNT = 8;
+
+    @Test
+    public void defaultParams() {
+        MinesweeperGame game = new MinesweeperGame();
+    }
+
+    @Test
+    public void underParams() {
+        MinesweeperGame game = new MinesweeperGame(-12, -12, -12);
+    }
+
+    @Test
+    public void overParams() {
+        MinesweeperGame game = new MinesweeperGame(100, 100, 100000);
+    }
+
+    @Test
+    public void revealSurroundingCells() {
+        MinesweeperGame game = new MinesweeperGame();
+
+        for (int y = 0; y < game.getBoardHeight(); y++) {
+            for (int x = 0; x < game.getBoardWidth(); x++) {
+                if (!game.getCell(y, x).isBomb()) {
+                    game.revealCell(y, x);
+                }
+            }
+        }
+    }
+
+    @Test
+    public void setStatus() {
+        MinesweeperGame game = new MinesweeperGame();
+
+        for (int y = 0; y < game.getBoardHeight(); y++) {
+            for (int x = 0; x < game.getBoardWidth(); x++) {
+                if (!game.getCell(y, x).isBomb()) {
+                    game.setFlagged(y, x, true);
+                    game.setFlagged(y, x, false);
+                }
+            }
+        }
+    }
+
+    @Test
+    public void isGameOver() {
+        MinesweeperGame game = new MinesweeperGame();
+        assertEquals(game.isGameOver(), false);
+    }
+
+    @Test
+    public void isWin() {
+        MinesweeperGame game = new MinesweeperGame();
+        assertEquals(game.isWin(), false);
+    }
 
     @Test
     public void checkBoardHeight() {
@@ -100,4 +154,24 @@ public class MinesweeperUnitTests {
     }
 
 
+
+    //TicTacToe Testing
+    @Test
+    public void placePiece() throws Exception {
+        TTTLogic t = new TTTLogic('X');
+
+        //top left spot
+        t.placePiece(0, 0);
+        assertEquals(t.getBoard()[0][0], 'X');
+    }
+
+    /**
+     * Test of the TTTLogic constructor
+     */
+    @Test
+    public void constructorTest() {
+        TTTLogic t = new TTTLogic('x');
+        assertEquals(t.getPlayerChar(), 'X');
+
+    }
 }
