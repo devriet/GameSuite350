@@ -1,14 +1,19 @@
 package timdevries.gamesuite350;
 
-import static org.junit.Assert.assertEquals;
-import org.junit.*;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import timdevries.gamesuite350.TTTLogic;
+
 
 /**
  * A test class for the TTTLogic class
  * Created by Matt on 2/1/2017.
  */
 
-class TTTLogicTest {
+public class TTTLogicTest {
+
     @Test
     public void placePiece() throws Exception {
         TTTLogic t = new TTTLogic('x');
@@ -32,17 +37,10 @@ class TTTLogicTest {
     }
 
     /**
-     * Constructor for test file
-     */
-    private TTTLogicTest() {
-
-    }
-
-    /**
      * Test of the TTTLogic constructor
      */
     @Test
-    private void constructorTest() {
+    public void constructorTest() {
         TTTLogic t = new TTTLogic('x');
         assertEquals(t.getPlayerChar(), 'X');
 

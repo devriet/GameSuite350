@@ -21,7 +21,7 @@ public class TTTLogic {
      * The board size for a normal game of tic tac toe.
      *  A tic tac toe board is a 3 by 3 grid.
      */
-    private static final int boardSize = 3;
+    private static final int BOARD_SIZE = 3;
     /**
      * A boolean that shows if the board is full (true) or not full (false).
      */
@@ -35,7 +35,7 @@ public class TTTLogic {
      * This is the board and since board size never changes it can be
      * initialized here.
      */
-    private char[][] board = new char[boardSize][boardSize];
+    private char[][] board = new char[BOARD_SIZE][BOARD_SIZE];
 
 
     /**
@@ -58,8 +58,8 @@ public class TTTLogic {
             playerChar = 'O';
         }
 
-        for (int i = 0; i < boardSize; i++) {
-            for (int k = 0; k < boardSize; k++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int k = 0; k < BOARD_SIZE; k++) {
                 board[i][k] = '*';
             }
         }
@@ -95,10 +95,10 @@ public class TTTLogic {
         Random r = new Random();
         Random a = new Random();
 
-        int size = boardSize;
+        int size = BOARD_SIZE;
         int limiter = 0;
 
-        while (!boardFull && limiter < (boardSize * boardSize)) {
+        while (!boardFull && limiter < (BOARD_SIZE * BOARD_SIZE)) {
             int x = r.nextInt(size);
             int y = a.nextInt(size);
             if (board[x][y] == '*') {
@@ -144,7 +144,7 @@ public class TTTLogic {
         //Player wins with three in a row:
         // for every row see if the chars are the same all the
         // way across
-        for (int i = 0; i < boardSize; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             if ((board[i][0] == playerChar) && (board[i][1] == playerChar)
                     && (board[i][2] == playerChar)) {
                     haveWon = true;
@@ -153,7 +153,7 @@ public class TTTLogic {
         }
 
         //vertical three in a row/column
-        for (int i = 0; i < boardSize; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             if ((board[0][i] == playerChar) && (board[1][i] == playerChar)
                     && (board[2][i] == playerChar)) {
                 haveWon = true;
@@ -164,7 +164,7 @@ public class TTTLogic {
         //Computer wins with three in a row:
         // for every row see if the chars are the same all the
         // way across
-        for (int i = 0; i < boardSize; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             if ((board[i][0] == playerChar) && (board[i][1] == playerChar)
                     && (board[i][2] == playerChar)) {
                 haveWon = false;
@@ -173,7 +173,7 @@ public class TTTLogic {
         }
 
         //vertical three in a row/column
-        for (int i = 0; i < boardSize; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             if (board[0][i] == playerChar && board[1][i] == playerChar
                     && board[2][i] == playerChar) {
                 haveWon = false;
