@@ -289,7 +289,7 @@ public class MinesweeperGame {
         Cell c = getCell(y, x);
         boolean updated = false;
 
-        if (c != null) {
+        if (c != null && !c.isRevealed()) {
             c.setFlagged(flagged);
 
             if (flagged) {
@@ -321,6 +321,7 @@ public class MinesweeperGame {
             return false;
         } else {
             c.setRevealed(true);
+            setFlagged(y, x, false);
 
             //Check for an update to the game status
             if (c.isBomb()) {
@@ -368,8 +369,8 @@ public class MinesweeperGame {
             for (int dX = x - 1; dX <= x + 1; dX++) {
                 // Checking that the empty cell expansion does not access
                 // outside of board or already revealed cells.
-                if (getCell(y + dY, x + dX) == null
-                        || getCell(y + dY, x + dX).isRevealed()) {
+                if (getCell(dY, dX) == null
+                        || getCell(dY, dX).isRevealed()) {
                     continue;
                 }
 
