@@ -15,6 +15,8 @@ class TTTPresenter {
 
     /**
      * Constructor fot a new game of TicTacToe.
+     *
+     * @param piece the player's chosen piece
      */
     TTTPresenter(final char piece) {
         tl = new TTTLogic(piece);
@@ -27,7 +29,7 @@ class TTTPresenter {
      * @param y the vertical location of the desired placement spot
      * @return the updated game board
      */
-    public boolean playGame(int x, int y) {
+    public boolean playGame(final int x, final int y) {
 
         if (!(tl.placePiece(x, y))) {
             if (tl.hasWon()) {
@@ -40,10 +42,19 @@ class TTTPresenter {
         return false;
     }
 
+    /**
+     * Return if the game over.
+     *
+     * @return true if the game is over
+     */
     boolean isGameOver() {
         return tl.isGameOver();
     }
 
+    /**
+     * Returns if the player has won or not.
+     * @return true for player win
+     */
     boolean hasPlayerWon() {
         return tl.hasWon();
     }
