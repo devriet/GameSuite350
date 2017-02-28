@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import madsen.MinesweeperGame;
 
@@ -112,6 +113,7 @@ public class MinesweeperGUI
 
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
+                board[y][x].setScaleType(ImageView.ScaleType.FIT_CENTER);
                 board[y][x].setImageDrawable(
                         ContextCompat.getDrawable(getApplicationContext(),
                                 R.drawable.minesweeper_blank));
