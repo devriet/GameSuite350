@@ -102,8 +102,8 @@ public class MinesweeperGUI
                 }
 
                 // Centering game board
-                myLayout.setX((w - (buttonSize * WIDTH)) / 2);
-                myLayout.setY((h - (buttonSize * HEIGHT)) / 2);
+                myLayout.setX((float) ((w - (buttonSize * WIDTH)) / 2.0));
+                myLayout.setY((float) ((h - (buttonSize * HEIGHT)) / 2.0));
             }
         });
 
