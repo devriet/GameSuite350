@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -86,14 +86,16 @@ public class TTTView extends AppCompatActivity
 
         //Build the alert dialog box and make a new presenter
         //need this context line; may break app
-        //help for this was found at: https://developer.android.com/guide/topics/ui/dialogs.html
+        //help for this was found at:
+        //https://developer.android.com/guide/topics/ui/dialogs.html
         Context c = this;
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(R.string.ttt_dialog_title)
                 .setItems(R.array.ttt_dialog_elements,
                         new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(final DialogInterface dialogInterface,
+                            public void onClick(
+                                    final DialogInterface dialogInterface,
                                                 final int i) {
                                 if (i == 0) {
                                     tp = new TTTPresenter('X');
@@ -105,6 +107,8 @@ public class TTTView extends AppCompatActivity
         builder.create();
         builder.show();
 
+        //this happens before the alert dialog
+        //which then overwrites this value.
         tp = new TTTPresenter('X');
 
         //Connect the TextViews to this class from the android
@@ -130,15 +134,17 @@ public class TTTView extends AppCompatActivity
         bottomRight.setOnClickListener(this);
 
         //set the board
-        board = new TextView[]{topLeft, topMiddle, topRight, centerLeft,
-                centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight};
+        board = new TextView[]{topLeft, topMiddle,
+                topRight, centerLeft,
+                centerMiddle, centerRight, bottomLeft,
+                bottomMiddle, bottomRight};
 
         setGame();
 
     }
 
     /**
-     * sets up the game
+     * sets up the game.
      */
     private void setGame() {
         updateBoard(tp.getBoard());
@@ -156,6 +162,7 @@ public class TTTView extends AppCompatActivity
         char[][] b;
 
         boolean gameOver = false;
+        boolean spotfull = false;
 
         //Dialog for if spot has a piece already
         Context c = this;
@@ -166,61 +173,83 @@ public class TTTView extends AppCompatActivity
 
         if (view == topLeft) {
 
-            gameOver = tp.playGame(0, 0);
+            spotfull = tp.playGame(0, 0);
             b = tp.getBoard();
+            gameOver = tp.isGameOver();
             updateBoard(b);
 
         } else if (view == topMiddle) {
 
-            gameOver = tp.playGame(0, 1);
+            spotfull = tp.playGame(0, 1);
             b = tp.getBoard();
+            gameOver = tp.isGameOver();
             updateBoard(b);
 
         } else if (view == topRight) {
 
-            gameOver = tp.playGame(0, 2);
+            spotfull = tp.playGame(0, 2);
             b = tp.getBoard();
+            gameOver = tp.isGameOver();
             updateBoard(b);
 
         } else if (view == centerLeft) {
 
-            gameOver = tp.playGame(1, 0);
+            spotfull = tp.playGame(1, 0);
             b = tp.getBoard();
+            gameOver = tp.isGameOver();
             updateBoard(b);
 
         } else if (view == centerMiddle) {
 
-            gameOver = tp.playGame(1, 1);
+            spotfull = tp.playGame(1, 1);
             b = tp.getBoard();
+            gameOver = tp.isGameOver();
             updateBoard(b);
 
         } else if (view == centerRight) {
 
-            gameOver = tp.playGame(1, 2);
+            spotfull = tp.playGame(1, 2);
             b = tp.getBoard();
+            gameOver = tp.isGameOver();
             updateBoard(b);
 
         } else if (view == bottomLeft) {
 
-            gameOver = tp.playGame(2, 0);
+            spotfull = tp.playGame(2, 0);
             b = tp.getBoard();
+            gameOver = tp.isGameOver();
             updateBoard(b);
 
         } else if (view == bottomMiddle) {
 
-            gameOver = tp.playGame(2, 1);
+            spotfull = tp.playGame(2, 1);
             b = tp.getBoard();
+            gameOver = tp.isGameOver();
             updateBoard(b);
 
         } else if (view == bottomRight) {
 
-            gameOver = tp.playGame(2, 2);
+            spotfull = tp.playGame(2, 2);
             b = tp.getBoard();
+            gameOver = tp.isGameOver();
             updateBoard(b);
         }
 
+        if (spotfull) {
+            builder.show();
+        }
+
         if (gameOver) {
-            System.out.println("GAME OVER");
+            CharSequence text;
+            if (tp.hasPlayerWon()) {
+                text = "You WIN! :)";
+            } else {
+                text = "You Lose. :(";
+            }
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(c, text, duration);
+            toast.show();
         }
 
     }

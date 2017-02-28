@@ -7,19 +7,21 @@ package timdevries.gamesuite350;
 
 class TTTPresenter {
 
-
-    TTTLogic tl;
+    /**
+     * The game logic object.
+     */
+    private TTTLogic tl;
 
 
     /**
-     * Constructor fot a new game of TicTacToe
+     * Constructor fot a new game of TicTacToe.
      */
-    public TTTPresenter(char piece) {
+    TTTPresenter(final char piece) {
         tl = new TTTLogic(piece);
     }
 
     /**
-     * Accesses the game logic to play the game
+     * Accesses the game logic to play the game.
      *
      * @param x the horizontal location of the desired placement spot
      * @param y the vertical location of the desired placement spot
@@ -36,6 +38,14 @@ class TTTPresenter {
         }
 
         return false;
+    }
+
+    boolean isGameOver() {
+        return tl.isGameOver();
+    }
+
+    boolean hasPlayerWon() {
+        return tl.hasWon();
     }
 
     /**
