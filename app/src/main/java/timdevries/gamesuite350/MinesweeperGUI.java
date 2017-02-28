@@ -1,6 +1,5 @@
 package timdevries.gamesuite350;
 
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -70,7 +69,8 @@ public class MinesweeperGUI
         board = new ImageButton[HEIGHT][WIDTH];
 
         // Grid layout
-        GridLayout myLayout = (GridLayout) findViewById(R.id.minesweeperGrid);
+        final GridLayout myLayout
+                = (GridLayout) findViewById(R.id.minesweeperGrid);
         myLayout.setRowCount(HEIGHT);
         myLayout.setColumnCount(WIDTH);
         myLayout.setPadding(0, 0, 0, 0);
@@ -79,17 +79,16 @@ public class MinesweeperGUI
         findViewById(R.id.content_minesweeper).post(new Runnable() {
             @Override
             public void run() {
-                Point size = new Point();
-                getWindowManager().getDefaultDisplay().getSize(size);
-
-                int xSize = size.x / WIDTH;
+                // Sizing buttons and icons
+                int w = findViewById(R.id.content_minesweeper).getWidth();
+                int xSize = w / WIDTH;
                 int h = findViewById(R.id.content_minesweeper).getHeight();
                 int ySize = h / HEIGHT;
 
-                if (ySize * WIDTH <= size.x) {
-                    buttonSize = ySize;
-                } else {
+                if (xSize * HEIGHT <= h) {
                     buttonSize = xSize;
+                } else {
+                    buttonSize = ySize;
                 }
 
                 ViewGroup.LayoutParams params;
@@ -101,6 +100,10 @@ public class MinesweeperGUI
                         board[y][x].setLayoutParams(params);
                     }
                 }
+
+                // Centering game board
+                myLayout.setX((w - (buttonSize * WIDTH)) / 2);
+                myLayout.setY((h - (buttonSize * HEIGHT)) / 2);
             }
         });
 
