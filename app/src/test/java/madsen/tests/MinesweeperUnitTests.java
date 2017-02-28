@@ -54,7 +54,7 @@ public class MinesweeperUnitTests {
         int count = 0;
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
-                if (game.getCell(x, y).isBomb()) {
+                if (game.getCell(y, x).isBomb()) {
                     count++;
                 }
             }

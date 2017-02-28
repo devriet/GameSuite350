@@ -289,7 +289,7 @@ public class MinesweeperGame {
         Cell c = getCell(y, x);
         boolean updated = false;
 
-        if (c != null && !c.isRevealed()) {
+        if (c != null && !c.isRevealed() && !isGameOver()) {
             c.setFlagged(flagged);
 
             if (flagged) {
@@ -300,6 +300,8 @@ public class MinesweeperGame {
 
             updated = true;
         }
+
+        setStatus();
 
         return updated;
     }
@@ -317,40 +319,25 @@ public class MinesweeperGame {
         // or already revealed
         Cell c = getCell(y, x);
 
-        if (c == null || c.isFlagged() || c.isRevealed()) {
+        if (c == null || c.isFlagged() || c.isRevealed()
+                || !(status == GameStatus.RUNNING)) {
             return false;
         } else {
             c.setRevealed(true);
             setFlagged(y, x, false);
 
+            if (getCell(y, x).getSurroundingBombs() == 0) {
+                revealSurroundingCells(x, y);
+            }
+
             //Check for an update to the game status
             if (c.isBomb()) {
                 //Checking if the game was lost
                 status = GameStatus.LOSE;
+                //Reveal the game board
+                revealBoard();
             } else {
-                //Checking if the game was won
-                if (numFlagged == numBombs) {
-                    status = GameStatus.WIN;
-
-                    for (int pY = 0; pY < boardHeight; pY++) {
-                        for (int pX = 0; pX < boardWidth; pX++) {
-                            if (!getCell(pY, pX).isRevealed()) {
-                                //Not all cells are revealed and game should
-                                //continue.
-                                status = GameStatus.RUNNING;
-                                break;
-                            }
-                        }
-
-                        if (status == GameStatus.RUNNING) {
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (getCell(y, x).getSurroundingBombs() == 0) {
-                revealSurroundingCells(x, y);
+                setStatus();
             }
 
             return true;
@@ -377,5 +364,61 @@ public class MinesweeperGame {
                 revealCell(dY, dX);
             }
         }
+    }
+
+    /**
+     * A helper method to reveal the entire game board.
+     */
+    private void revealBoard() {
+        for (int y = 0; y < boardHeight; y++) {
+            for (int x = 0; x < boardWidth; x++) {
+                getCell(y, x).setRevealed(true);
+            }
+        }
+    }
+
+    /**
+     * A helper method to set the status of the game after a move.
+     */
+    private void setStatus() {
+        //Checking if the game was won
+        if (numFlagged == numBombs) {
+            status = GameStatus.WIN;
+
+            Cell c;
+            for (int pY = 0; pY < boardHeight; pY++) {
+                for (int pX = 0; pX < boardWidth; pX++) {
+                    c = getCell(pY, pX);
+                    if (!c.isRevealed() && !c.isFlagged()) {
+                        //Not all cells are revealed and game should
+                        //continue.
+                        status = GameStatus.RUNNING;
+                        break;
+                    }
+                }
+
+                if (status == GameStatus.RUNNING) {
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Determines if the game is over.
+     *
+     * @return Whether the game is over
+     */
+    public boolean isGameOver() {
+        return !(status == GameStatus.RUNNING);
+    }
+
+    /**
+     * Determines if the game was won or lost.
+     *
+     * @return True if won, false if lost
+     */
+    public boolean isWin() {
+        return status == GameStatus.WIN;
     }
 }

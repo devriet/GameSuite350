@@ -1,6 +1,7 @@
 package timdevries.gamesuite350;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,7 +44,7 @@ public class MinesweeperGUI
     /**
      * Bomb count for game.
      */
-    private static final int BOMBS = 10;
+    private static final int BOMBS = 3;
 
     /**
      * Pixel dimension of buttons.
@@ -137,7 +138,7 @@ public class MinesweeperGUI
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board[y].length; x++) {
                 c = game.getCell(y, x);
-                if (c.isFlagged()) {
+                if (!c.isRevealed() && c.isFlagged()) {
                     board[y][x].setImageDrawable(
                             ContextCompat.getDrawable(
                                     getApplicationContext(),
@@ -153,50 +154,58 @@ public class MinesweeperGUI
                                     getApplicationContext(),
                                     R.drawable.minesweeper_bomb));
                 } else {
+                    final int one = 1;
+                    final int two = 2;
+                    final int three = 3;
+                    final int four = 4;
+                    final int five = 5;
+                    final int six = 6;
+                    final int seven = 7;
+                    final int eight = 8;
                     switch (game.getCell(y, x).getSurroundingBombs()) {
-                        case 1:
+                        case one:
                             board[y][x].setImageDrawable(
                                     ContextCompat.getDrawable(
                                             getApplicationContext(),
                                             R.drawable.minesweeper_1));
                             break;
-                        case 2:
+                        case two:
                             board[y][x].setImageDrawable(
                                     ContextCompat.getDrawable(
                                             getApplicationContext(),
                                             R.drawable.minesweeper_2));
                             break;
-                        case 3:
+                        case three:
                             board[y][x].setImageDrawable(
                                     ContextCompat.getDrawable(
                                             getApplicationContext(),
                                             R.drawable.minesweeper_3));
                             break;
-                        case 4:
+                        case four:
                             board[y][x].setImageDrawable(
                                     ContextCompat.getDrawable(
                                             getApplicationContext(),
                                             R.drawable.minesweeper_4));
                             break;
-                        case 5:
+                        case five:
                             board[y][x].setImageDrawable(
                                     ContextCompat.getDrawable(
                                             getApplicationContext(),
                                             R.drawable.minesweeper_5));
                             break;
-                        case 6:
+                        case six:
                             board[y][x].setImageDrawable(
                                     ContextCompat.getDrawable(
                                             getApplicationContext(),
                                             R.drawable.minesweeper_6));
                             break;
-                        case 7:
+                        case seven:
                             board[y][x].setImageDrawable(
                                     ContextCompat.getDrawable(
                                             getApplicationContext(),
                                             R.drawable.minesweeper_7));
                             break;
-                        case 8:
+                        case eight:
                             board[y][x].setImageDrawable(
                                     ContextCompat.getDrawable(
                                             getApplicationContext(),
@@ -214,6 +223,25 @@ public class MinesweeperGUI
     }
 
     /**
+     * A helper method to display win and lose message.
+     *
+     * @param view The view this is in
+     */
+    private void announceGameOver(final View view) {
+        if (game.isWin()) {
+            Snackbar.make(view,
+                    "You Win :)",
+                    Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else {
+            Snackbar.make(view,
+                    "You Lose :(",
+                    Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+    }
+
+    /**
      * Implementation of the onClick method for View. Determines which button
      * was clicked and changes the icon.
      *
@@ -224,10 +252,6 @@ public class MinesweeperGUI
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board[y].length; x++) {
                 if (board[y][x] == view) {
-//                    Snackbar.make(view,
-//                            "Click",
-//                            Snackbar.LENGTH_LONG)
-//                            .setAction("Action", null).show();
                     if (game.getCell(y, x).isFlagged()) {
                         game.setFlagged(y, x, false);
                     } else {
@@ -238,6 +262,10 @@ public class MinesweeperGUI
         }
 
         drawBoard();
+
+        if (game.isGameOver()) {
+            announceGameOver(view);
+        }
     }
 
     /**
@@ -252,10 +280,6 @@ public class MinesweeperGUI
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board[y].length; x++) {
                 if (board[y][x] == view) {
-//                            Snackbar.make(view,
-//                                    "Long click",
-//                                    Snackbar.LENGTH_LONG)
-//                                    .setAction("Action", null).show();
                     if (game.getCell(y, x).isFlagged()) {
                         // Do nothing
                         break;
@@ -267,6 +291,10 @@ public class MinesweeperGUI
         }
 
         drawBoard();
+
+        if (game.isGameOver()) {
+            announceGameOver(view);
+        }
 
         // Always consume click
         return true;
