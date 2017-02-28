@@ -21,7 +21,7 @@ public class TTTLogic {
      * The board size for a normal game of tic tac toe.
      *  A tic tac toe board is a 3 by 3 grid.
      */
-    private final int boardSize = 3;
+    private static final int boardSize = 3;
     /**
      * A boolean that shows if the board is full (true) or not full (false).
      */
@@ -77,10 +77,12 @@ public class TTTLogic {
      */
     public boolean placePiece(final int x, final int y) {
 
-        if (board[x][y] == '*') {
-            board[x][y] = playerChar;
-            placeCompPiece();
-            return true;
+        if (!isGameOver()) {
+            if (board[x][y] == '*') {
+                board[x][y] = playerChar;
+                placeCompPiece();
+                return true;
+            }
         }
 
         return false;
@@ -93,9 +95,10 @@ public class TTTLogic {
         Random r = new Random();
         Random a = new Random();
 
-        int size = 3;
+        int size = boardSize;
         int limiter = 0;
-        while (!boardFull && limiter < 10) {
+
+        while (!boardFull && limiter < (boardSize * boardSize)) {
             int x = r.nextInt(size);
             int y = a.nextInt(size);
             if (board[x][y] == '*') {
@@ -113,7 +116,7 @@ public class TTTLogic {
      * are three of the important chars in a row
      * @return true if game is over otherwise return false
      */
-    boolean isGameOver() {
+    final boolean isGameOver() {
 
         boardFull = true;
         for (char[] c: board) {
