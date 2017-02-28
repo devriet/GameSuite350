@@ -6,7 +6,7 @@ import madsen.MinesweeperGame;
 
 /**
  * A suite of tests designed to ensure proper functionality for the
- * MinesweperGame class.
+ * MinesweeperGame class.
  *
  * @author Troy Madsen
  */

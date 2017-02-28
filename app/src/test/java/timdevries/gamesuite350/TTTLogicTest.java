@@ -20,15 +20,15 @@ public class TTTLogicTest {
 
         //top left spot
         t.placePiece(0, 0);
-        assertEquals(t.getBoard()[0][0], 'x');
+        assertEquals(t.getBoard()[0][0], 'X');
 
         //bottom right spot
         t.placePiece(2,2);
-        assertEquals(t.getBoard()[2][2], 'x');
+        assertEquals(t.getBoard()[2][2], 'X');
 
         //middle spot
         t.placePiece(1,1);
-        assertEquals(t.getBoard()[1][1], 'x');
+        assertEquals(t.getBoard()[1][1], 'X');
     }
 
     @Test
