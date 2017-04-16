@@ -1,0 +1,330 @@
+commit ea1d6b60350a0bd8e24147191464b93b46b6d186
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Tue Feb 28 00:19:19 2017 -0500
+
+    ...
+
+commit b8bd8a2aa22858b490fbff83ed1769aef0da087d
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Tue Feb 28 00:14:43 2017 -0500
+
+    -Create state variables to handle possible tiles
+
+commit 12b0f225c08744360ac59d5b9dc0dbd4bb52bb83
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Mon Feb 27 23:30:08 2017 -0500
+
+    Game Works!!
+
+commit c3b31760fa94c4a0adb50ce933d034b5a9d9fc2b
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 27 23:23:52 2017 -0500
+
+    -Create state variables to handle possible tiles
+
+commit 8e0f579ba5c34ab54aa17111fb13d957573b55e0
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 27 22:11:40 2017 -0500
+
+    -Fixed FindBugs issue
+
+commit 99b52f5f978c4b8f786cfb9d70824ba30583ea43
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 27 22:05:52 2017 -0500
+
+    -Centered game board to screen
+
+commit 318c5bc0e02b1607b18e9dc088d5a29fa0199244
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Mon Feb 27 21:45:17 2017 -0500
+
+    Game Works!! (mostly).
+
+commit 1974378088e316da7ca43d66951cd4171431428f
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 27 21:40:49 2017 -0500
+
+    -Adjusted how the board draws itself
+
+commit 578c5741d4ddc7a4c32a7d634954b57764a10d0d
+Merge: 2e114c8 4b045e7
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 27 21:38:09 2017 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 2e114c866f92329af3b5415a355df4242819bc5b
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 27 21:37:47 2017 -0500
+
+    -Adjusted how the board draws itself
+
+commit 4b045e78c88e5168482d822f95b4a7ea9f9bc8a2
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Mon Feb 27 21:09:22 2017 -0500
+
+    Game Works!! (mostly).
+
+commit 996c2c3ccfbb114cb05511bf538917d6b1245472
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Mon Feb 27 20:55:03 2017 -0500
+
+    Game Works!! (mostly).
+
+commit 22a710a22f2503f1e9d36bb6920c51bcf97406bc
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 27 20:47:14 2017 -0500
+
+    -Button icons scale to fit button size
+
+commit fe6e5d8581720a719465a0b311383d8398002b2c
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Mon Feb 27 10:41:55 2017 -0500
+
+    Updated TTT code, computer can place pieces now.
+
+commit 704ca4b4c6d1633e773c138376cce382fc728c4b
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Mon Feb 27 10:39:51 2017 -0500
+
+    Updated TTT code, you can place pieces now.
+
+commit d282934f119c3a0e3e60627a33eb3ced7d932149
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 27 02:54:07 2017 -0500
+
+    -Changed button layout structure
+    -Added dynamic button sizing
+    -Finished rendering proper button icons
+    -Need to size icons to buttons
+    -Needs to enable flagging
+    -Need to allow dynamic board sizing
+
+commit 8da02e7c45a47de474485be74ab6fa56bebc1775
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 27 00:07:22 2017 -0500
+
+    -Fixed switch statement fall-through issue
+
+commit dfdd5b4565a2cace0ef1243707fce492fd11cbbf
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 27 00:05:58 2017 -0500
+
+    -Fixed setBombCounts() logic error
+
+commit 75098ecbe1289d07971ffcfe7d0f7d7f11e67cf9
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Sun Feb 26 22:39:39 2017 -0500
+
+    -Renamed tTTLogic to TTTLogic. Matt I will hurt you if you change this back.
+
+commit 300feb886376c2174078534ea624cc20449bd0cc
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Sun Feb 26 20:32:43 2017 -0500
+
+    Updated TTT code.
+
+commit a76e9ac0acde661114fa7f0550dd5a22bd46f501
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Sun Feb 26 19:06:00 2017 -0500
+
+    -Began rendering each button icon
+
+commit 2fde9a79657c39489e988c7ae41f2737eb62248e
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Sun Feb 26 18:28:27 2017 -0500
+
+    -Rendering button icons
+
+commit d302a53e536f0a989e186651fa66114ece89e589
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Sun Feb 26 18:19:34 2017 -0500
+
+    -Added icons for minesweeper
+
+commit 50cd24a291801e032bf81159f3744c1efab0c71c
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Sun Feb 26 18:16:23 2017 -0500
+
+    -Changed Buttons to ImageButtons
+
+commit 727675e4eb441a5116d299d9bef9bcf943538ace
+Merge: f8a0eed 5f14b56
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Sun Feb 26 18:10:14 2017 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 5f14b56d386c1c0a06923497805b6ce2dc157cd3
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Sun Feb 26 17:22:59 2017 -0500
+
+    Dialogs don't work and bad object
+
+commit b8a379cbf48d839e2c645c117d7ad59daa0bffcc
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Sun Feb 26 17:20:01 2017 -0500
+
+    Updated a lot of the TTT stuff
+
+commit f8a0eedbbd70235e7cb4535212353c82561d021e
+Merge: 24dcc92 7c12185
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Sun Feb 26 15:34:20 2017 -0500
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       app/src/main/java/timdevries/gamesuite350/MinesweeperGUI.java
+
+commit bbb242e16b2e684d5dc5942337ede3f82da8689c
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Sun Feb 26 15:34:18 2017 -0500
+
+    Updated a lot of the TTT stuff
+
+commit 24dcc92d87ccacccd7dd0121be8cc8670042d209
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Sun Feb 26 15:32:37 2017 -0500
+
+    -Added javadoc comments
+    -Created width and  height parameters for board
+
+commit 7c12185d4b2a53f22c13b6ba8a838c8b1fcfaf97
+Author: devriet <devritim@mail.gvsu.edu>
+Date:   Sun Feb 26 15:13:56 2017 -0500
+
+    Updated javadoc comments and fixed other CheckStyle errors.
+
+commit 088fb98431ce8d9a0491900b8799fff518562d3f
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Sun Feb 26 14:17:54 2017 -0500
+
+    -Corrected some naming issues
+
+commit 00305d860362229a96e69c32ea61a39401b48a6a
+Author: devriet <devritim@mail.gvsu.edu>
+Date:   Sat Feb 25 19:50:27 2017 -0500
+
+    Fixed gradle build issues and populated the minesweeper board according to the size parameter
+
+commit ceea26e99ca258d97b8a14798c90b26b240d13d3
+Merge: f7d2d15 aa0b7c9
+Author: devriet <devritim@mail.gvsu.edu>
+Date:   Fri Feb 24 19:06:39 2017 -0500
+
+    Merge remote-tracking branch 'remotes/origin/Release1'
+
+commit aa0b7c9cc4bb958046870413681636eb8777dd9e
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Fri Feb 24 18:48:02 2017 -0500
+
+    -Begun building minesweeper GUI
+
+commit f7d2d15d187ea6f6dd59820ac14665c1994601e8
+Author: devriet <devritim@mail.gvsu.edu>
+Date:   Fri Feb 24 18:46:53 2017 -0500
+
+    Hopefully this fixes the capitalization errors...
+
+commit ce43f02fe82f48c2e2f23d02ae7cc47f21668ef0
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Fri Feb 24 18:43:02 2017 -0500
+
+    ttt stuff
+
+commit 5c0c4553fd627bff74590685800a9980ed417caf
+Author: devriet <devritim@mail.gvsu.edu>
+Date:   Fri Feb 24 18:04:00 2017 -0500
+
+    This is Tim's push.
+
+commit cebb93210de988b8c5122d2c0073eb23132938fc
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Fri Feb 24 17:52:39 2017 -0500
+
+    -Merged master and Minesweeper branches
+    -Begun building minesweeper GUI
+
+commit 9bd2a14ee5ce0d4426f71eb1a6999ee1e786d267
+Merge: 2df4fba a816c46
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Fri Feb 24 17:19:32 2017 -0500
+
+    Merge branch 'Minesweeper' into Release1
+
+commit a816c465dc2373a0685ec2de6dd4c9d842e8e13a
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Fri Feb 24 17:13:17 2017 -0500
+
+    -Created test cases for test functionality
+
+commit 2df4fba9dc4526e2e066a77c242e715459b731a0
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Mon Feb 13 10:32:36 2017 -0500
+
+    This code is not finished, but it is an adequate start to the TTTLogic junit test.
+
+commit e912a1cdfde6eb2fb0d36c568b5f19bf59b0ca9b
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Mon Feb 13 10:22:07 2017 -0500
+
+    This code is not finished, but it is an adequate start to the TTTLogic junit test.
+
+commit a31381d800f22dc97ec77d394838dc7b4129ab3c
+Author: Troy Madsen <troylmadsen@gmail.com>
+Date:   Mon Feb 6 10:27:16 2017 -0500
+
+    -Adjusted revealSurroundingCells() logic to properly evaluate blank, expansible cells.
+
+commit 2f6010c7741b03ca5642aef2850795343785fed2
+Author: Troy Madsen <Troy Madsen>
+Date:   Mon Feb 6 10:01:16 2017 -0500
+
+    -Initial upload of the Minesweeper branch.
+    
+    -Added the MinesweeperGame class that handles all operation.
+    
+    -Added the Cell class responsible for maintaining the state of each cell
+    in the game.
+    
+    -Added the GameStatus enumeration class that provides the status of the
+    game.
+    
+    -
+
+commit 434ab6ac4c2a3f4361a74c817bd6c5b9ad27832e
+Author: devriet <devritim@mail.gvsu.edu>
+Date:   Wed Feb 1 10:52:00 2017 -0500
+
+    Create README.md
+
+commit 00e9b3bb204784c236219e32f210d9bff2ae5ad7
+Author: devriet <devritim@mail.gvsu.edu>
+Date:   Fri Jan 27 10:48:28 2017 -0500
+
+    "This is a frickin javadoc comment." added 1,000 times. Oh, and I fixed the package-info.java issue.
+
+commit 4617f6121d3ce6d40a2a6088a951d189025ade53
+Author: devriet <devritim@mail.gvsu.edu>
+Date:   Wed Jan 25 10:04:43 2017 -0500
+
+    Added base framework for minesweeper presenter. Refractored TTTLogic to fix errors.
+
+commit 3031d56ca569cc41ee6ec27f18b6686a787b6cc4
+Author: Matthew Perry Johnson <johnsma7@mail.gvsu.edu>
+Date:   Mon Jan 23 11:29:21 2017 -0500
+
+    This code is not finished, but it is an adequate start.
+
+commit 25375dfad8d2a29c0adb34a393fb9139b55ed6ff
+Author: devriet <devritim@mail.gvsu.edu>
+Date:   Fri Jan 20 10:58:47 2017 -0500
+
+    set up onClickListeners and created new activity for tictactoe.
+
+commit df06da0137b7d7098f5e790cb85fac862a7892b6
+Author: devriet <devritim@mail.gvsu.edu>
+Date:   Thu Jan 19 20:25:09 2017 -0500
+
+    Initial commit
