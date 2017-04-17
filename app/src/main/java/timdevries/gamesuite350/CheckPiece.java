@@ -8,7 +8,7 @@ public class CheckPiece {
     /**
      * The color of the piece.
      */
-    private String pieceColor;
+    private Enum pieceColor;
 
     /**
      * Boolean for king or not.
@@ -16,10 +16,18 @@ public class CheckPiece {
     private boolean isKing;
 
     /**
+     * The constructor for the piece.
+     * @param p the piece color
+     */
+    CheckPiece(final Enum p) {
+        this.setPieceColor(p);
+    }
+
+    /**
      * Gets the color of the piece.
      * @return string pieceColor
      */
-    public String getColor() {
+    public Enum getColor() {
         return pieceColor;
     }
 
@@ -35,7 +43,7 @@ public class CheckPiece {
      * Sets the color of the piece.
      * @param p string of the color wanted
      */
-    public void setPieceColor(final String p) {
+    public void setPieceColor(final Enum p) {
         pieceColor = p;
     }
 

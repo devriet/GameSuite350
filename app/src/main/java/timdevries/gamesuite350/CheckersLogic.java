@@ -7,16 +7,6 @@ package timdevries.gamesuite350;
 public class CheckersLogic {
 
     /**
-     * The piece the player is using for the game.
-     */
-    private String playerPiece;
-
-    /**
-     * The computer's game piece.
-     */
-    private String computerPiece;
-
-    /**
      * The board for the game of Draughts better known as Checkers.
      */
     private BoardSquare[][] board;
@@ -27,18 +17,8 @@ public class CheckersLogic {
 
     /**
      * Constructor for the Checkers Logic class.
-     * @param piece The players chosen piece. It can be either "R" or "B".
      */
-    CheckersLogic(final String piece) {
-        playerPiece = piece;
-        if (piece.equals("R")) {
-            computerPiece = "B";
-        } else if (piece.equals("B")) {
-            computerPiece = "R";
-        } else {
-            playerPiece = "R";
-            computerPiece = "B";
-        }
+    CheckersLogic() {
         board = new BoardSquare[boardSize][boardSize];
         populateBoard();
     }
@@ -51,31 +31,31 @@ public class CheckersLogic {
         for (int i = 0; i < boardSize; i++) {
             for (int k = 0; k < boardSize; k++) {
                 if (isWhite) {
-                    board[i][k] = new BoardSquare("White");
+                    board[i][k] = new BoardSquare();
                     isWhite = false;
                 } else {
-                    board[i][k] = new BoardSquare("Black");
+                    board[i][k] = new BoardSquare();
                     isWhite = true;
                 }
             }
         }
 
-        //add the red pieces to the board
+        //add the red pieces to the board top
         int c = 3;
         for (int p = 0; p < c; p++) {
             for (int l = 0; l < boardSize; l++) {
-                if (board[p][l].getColor().equals("Black")) {
-                    board[p][l].setPiece("R");
+                if ((p + l) % 2 == 0) {
+                    board[p][l].setPiece(new CheckPiece(PieceColor.RED));
                 }
             }
         }
 
-        //add the black pieces
+        //add the black pieces to the board bottom
         int a = 7, b = 4;
         for (int p = a; p > b; p--) {
             for (int l = 0; l < boardSize; l++) {
-                if (board[p][l].getColor().equals("Black")) {
-                    board[p][l].setPiece("B");
+                if ((p + l) % 2 == 0) {
+                    board[p][l].setPiece(new CheckPiece(PieceColor.BLACK));
                 }
             }
         }
@@ -99,9 +79,60 @@ public class CheckersLogic {
             return false;
         }
 
+        if (checkDiagonalMove(x, y, cx, cy)) {
 
+            if (board[cx][cy].getPiece().isKing()) {
+                //can move any direction
+                BoardSquare b;
+                b = board[cx][cy];
+                board[cx][cy] = new BoardSquare();
+                board[x][y] = b;
+                return true;
+            } else {
+                if (board[cx][cy].getPiece().getColor() == PieceColor.RED) {
+                    //can only move down the board unless it is a king
+                    if (cx > x) {
+                        BoardSquare b;
+                        b = board[cx][cy];
+                        board[cx][cy] = new BoardSquare();
+                        board[x][y] = b;
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else if (board[cx][cy].getPiece().getColor()
+                        == PieceColor.BLACK) {
+                    //can only move up the board unless it is a king
+                    if (cx < x) {
+                        BoardSquare b;
+                        b = board[cx][cy];
+                        board[cx][cy] = new BoardSquare();
+                        board[x][y] = b;
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            return false;
+        }
 
         return false;
+    }
+
+    /**
+     * Checks if the space is diagonal.
+     * @param x x val for where the piece is being moved
+     * @param y y val for where the piece is being moved
+     * @param cx x val for where the piece is currently
+     * @param cy y val for where the piece is currently
+     *
+     * @return boolean if it is diagonal or not
+     */
+    private boolean checkDiagonalMove(final int x, final int y,
+                                      final int cx, final int cy) {
+            return ((x + y) % 2 == (cx + cy) % 2);
     }
 
     /**
