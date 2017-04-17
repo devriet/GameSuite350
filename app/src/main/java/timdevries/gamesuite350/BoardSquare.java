@@ -20,12 +20,12 @@ class BoardSquare {
 
     /**
      * Initializes a board square with the passed color and piece.
-     * @param c the color of the board square.
-     * @param p the piece that this square holds.
+     * @param c the color of the board square
+     * @param checkPiece the piece object on this square
      */
-    BoardSquare(final String c, final String p) {
+    BoardSquare(final String c, final CheckPiece checkPiece) {
         setColor(c);
-        setPiece(p);
+        piece = checkPiece;
     }
 
     /**
@@ -34,7 +34,7 @@ class BoardSquare {
      */
     BoardSquare(final String c) {
         setColor(c);
-        piece.setPieceColor(c);
+        piece = null;
     }
 
     /**
@@ -65,6 +65,5 @@ class BoardSquare {
      * Sets the piece that is on this board square.
      * @param p the piece that is in this board square
      */
-    public void setPiece(final String p) { piece.setPieceColor(p);
-    }
+    public void setPiece(final CheckPiece p) { piece = p; }
 }
