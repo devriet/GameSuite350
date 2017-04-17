@@ -11,8 +11,8 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import madsen.Cell;
-import madsen.MinesweeperGame;
+import madsen.minesweeper.Cell;
+import madsen.minesweeper.MinesweeperGame;
 
 /**
  * Creates and manages the view of a MinesweeperGame.
@@ -127,7 +127,12 @@ public class MinesweeperGUI
         // Draw the game board
         drawBoard();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        try {
+            //noinspection ConstantConditions
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

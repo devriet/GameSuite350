@@ -1,4 +1,4 @@
-package madsen;
+package madsen.minesweeper;
 
 /**
  * A Minesweeper game that functions similarly to the original game with a few

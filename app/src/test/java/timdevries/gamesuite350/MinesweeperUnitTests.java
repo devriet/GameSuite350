@@ -1,8 +1,11 @@
 package timdevries.gamesuite350;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
-import madsen.MinesweeperGame;
+
+import madsen.minesweeper.MinesweeperGame;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * A suite of tests designed to ensure proper functionality for the

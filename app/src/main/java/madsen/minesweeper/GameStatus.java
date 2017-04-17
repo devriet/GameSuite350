@@ -1,4 +1,4 @@
-package madsen;
+package madsen.minesweeper;
 
 /**
  * An enumeration of the multiple states that the game may be in.
@@ -6,7 +6,7 @@ package madsen;
  * Created by Troy Madsen on 1/26/2017.
  */
 
-public enum GameStatus {
+enum GameStatus {
     /**
      * Indicates that the game has been won.
      */

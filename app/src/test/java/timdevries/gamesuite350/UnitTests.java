@@ -1,8 +1,11 @@
 package timdevries.gamesuite350;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
-import madsen.MinesweeperGame;
+
+import madsen.minesweeper.MinesweeperGame;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * A suite of tests designed to ensure proper functionality for the
@@ -17,17 +20,17 @@ public class UnitTests {
 
     @Test
     public void defaultParams() {
-        MinesweeperGame game = new MinesweeperGame();
+        new MinesweeperGame();
     }
 
     @Test
     public void underParams() {
-        MinesweeperGame game = new MinesweeperGame(-12, -12, -12);
+        new MinesweeperGame(-12, -12, -12);
     }
 
     @Test
     public void overParams() {
-        MinesweeperGame game = new MinesweeperGame(100, 100, 100000);
+        new MinesweeperGame(100, 100, 100000);
     }
 
     @Test
