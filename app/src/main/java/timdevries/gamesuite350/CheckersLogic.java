@@ -1,6 +1,7 @@
 package timdevries.gamesuite350;
 
 /**
+ * The logic for the checkers game.
  * Created by Matt Johnson on 4/14/2017.
  */
 
@@ -13,23 +14,24 @@ public class CheckersLogic {
     /**
      * The size of the board sides.
      */
-    private final int boardSize = 8;
+    private static final int BOARD_SIZE = 8;
 
     /**
      * Constructor for the Checkers Logic class.
      */
     CheckersLogic() {
-        board = new BoardSquare[boardSize][boardSize];
+        board = new BoardSquare[BOARD_SIZE][BOARD_SIZE];
         populateBoard();
     }
 
     /**
-     * Makes the board and puts pieces in the starting positions.
+     * Populates the board with BoardSquares
+     *  and puts pieces in the starting positions.
      */
     private void populateBoard() {
         boolean isWhite = true;
-        for (int i = 0; i < boardSize; i++) {
-            for (int k = 0; k < boardSize; k++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int k = 0; k < BOARD_SIZE; k++) {
                 if (isWhite) {
                     board[i][k] = new BoardSquare();
                     isWhite = false;
@@ -41,9 +43,10 @@ public class CheckersLogic {
         }
 
         //add the red pieces to the board top
+        //3 is the number of rows that get pieces
         int c = 3;
         for (int p = 0; p < c; p++) {
-            for (int l = 0; l < boardSize; l++) {
+            for (int l = 0; l < BOARD_SIZE; l++) {
                 if ((p + l) % 2 == 0) {
                     board[p][l].setPiece(new CheckPiece(PieceColor.RED));
                 }
@@ -51,9 +54,10 @@ public class CheckersLogic {
         }
 
         //add the black pieces to the board bottom
+        //7 and 4 are the limits to the rows that get pieces
         int a = 7, b = 4;
         for (int p = a; p > b; p--) {
-            for (int l = 0; l < boardSize; l++) {
+            for (int l = 0; l < BOARD_SIZE; l++) {
                 if ((p + l) % 2 == 0) {
                     board[p][l].setPiece(new CheckPiece(PieceColor.BLACK));
                 }
@@ -153,6 +157,6 @@ public class CheckersLogic {
      * @return the board.
      */
     public BoardSquare[][] getBoard() {
-        return board;
+        return board.clone();
     }
 }
