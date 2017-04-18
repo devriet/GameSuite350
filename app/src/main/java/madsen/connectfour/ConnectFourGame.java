@@ -69,8 +69,7 @@ public class ConnectFourGame {
      * @return A board representation with 1 for black and 2 for red.
      */
     public int[][] getBoard() {
-        final int[][] b = board;
-        return b;
+        return board.clone();
     }
 
     /**
