@@ -78,11 +78,17 @@ public class CheckersLogic {
      */
     private boolean move(final int x, final int y,
                       final int cx, final int cy) {
+        //no piece to move
+        if (board[cx][cy].getPiece() == null) {
+            return false;
+        }
 
+        //no movement of piece
         if ((cx == x) && (cy == y)) {
             return false;
         }
 
+        //checks to make sure the move is diagonal
         if (checkDiagonalMove(x, y, cx, cy)) {
 
             if (board[cx][cy].getPiece().isKing()) {
@@ -141,6 +147,7 @@ public class CheckersLogic {
 
     /**
      * Prints the board based on piece.
+     * Not useful...
      */
     private void printBoard() {
         for (BoardSquare[] b : board) {
@@ -154,7 +161,7 @@ public class CheckersLogic {
     /**
      * Gets the Board.
      *
-     * @return the board.
+     * @return BoardSquare[][] board.
      */
     public BoardSquare[][] getBoard() {
         return board.clone();
