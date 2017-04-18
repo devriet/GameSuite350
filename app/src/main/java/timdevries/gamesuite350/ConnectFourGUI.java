@@ -41,18 +41,18 @@ public class ConnectFourGUI
     private int selected;
 
     /**
-     * Handles the creation of a MinesweeperGUI object.
+     * Handles the creation of a ConnectFourGUI object.
      *
      * @param savedInstanceState The state this view is creted within.
      */
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_minesweeper);
+        setContentView(R.layout.activity_connectfour);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Creating a new game of MinesweeperGUI
+        // Creating a new game of ConnectFourGUI
         game = new ConnectFourGame();
 
         // Initializing board of buttons
@@ -63,19 +63,19 @@ public class ConnectFourGUI
 
         // Grid layout
         final GridLayout myLayout
-                = (GridLayout) findViewById(R.id.minesweeperGrid);
-        myLayout.setRowCount(ConnectFourGame.HEIGHT + 1);
-        myLayout.setColumnCount(ConnectFourGame.WIDTH);
+                = (GridLayout) findViewById(R.id.connectfourGrid);
+        myLayout.setRowCount(board.length);
+        myLayout.setColumnCount(board[0].length);
         myLayout.setPadding(0, 0, 0, 0);
 
         // This sets the size of game board buttons after rendering
-        findViewById(R.id.content_minesweeper).post(new Runnable() {
+        findViewById(R.id.content_connectfour).post(new Runnable() {
             @Override
             public void run() {
                 // Sizing buttons and icons
-                int w = findViewById(R.id.content_minesweeper).getWidth();
+                int w = findViewById(R.id.content_connectfour).getWidth();
                 int xSize = w / ConnectFourGame.WIDTH;
-                int h = findViewById(R.id.content_minesweeper).getHeight();
+                int h = findViewById(R.id.content_connectfour).getHeight();
                 int ySize = h / (ConnectFourGame.HEIGHT + 1);
 
                 if (xSize * ConnectFourGame.HEIGHT <= h) {
