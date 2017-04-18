@@ -58,7 +58,7 @@ public class ConnectFourGUI
         // Initializing board of buttons
         board = new ImageButton[ConnectFourGame.HEIGHT + 1][ConnectFourGame.WIDTH];
 
-        // Give seleceted a default value
+        // Give selected a default value
         selected = 0;
 
         // Grid layout
@@ -74,34 +74,34 @@ public class ConnectFourGUI
             public void run() {
                 // Sizing buttons and icons
                 int w = findViewById(R.id.content_connectfour).getWidth();
-                int xSize = w / ConnectFourGame.WIDTH;
+                int xSize = w / board[0].length;
                 int h = findViewById(R.id.content_connectfour).getHeight();
-                int ySize = h / (ConnectFourGame.HEIGHT + 1);
+                int ySize = h / board.length;
 
-                if (xSize * ConnectFourGame.HEIGHT <= h) {
+                if (xSize * board[0].length <= h) {
                     buttonSize = xSize;
                 } else {
                     buttonSize = ySize;
                 }
 
                 ViewGroup.LayoutParams params;
-                for (int y = 0; y < ConnectFourGame.HEIGHT; y++) {
-                    for (int x = 0; x < ConnectFourGame.WIDTH; x++) {
-                        params = board[y][x].getLayoutParams();
+                for (ImageButton[] aBoard : board) {
+                    for (int x = 0; x < board[0].length; x++) {
+                        params = aBoard[x].getLayoutParams();
                         params.height = buttonSize;
                         params.width = buttonSize;
-                        board[y][x].setLayoutParams(params);
+                        aBoard[x].setLayoutParams(params);
                     }
                 }
 
                 // Centering game board
-                myLayout.setX((float) ((w - (buttonSize * ConnectFourGame.WIDTH)) / 2.0));
-                myLayout.setY((float) ((h - (buttonSize * ConnectFourGame.HEIGHT)) / 2.0));
+                myLayout.setX((float) ((w - (buttonSize * board[0].length)) / 2.0));
+                myLayout.setY((float) ((h - (buttonSize * board.length)) / 2.0));
             }
         });
 
-        for (int y = 0; y < ConnectFourGame.HEIGHT; y++) {
-            for (int x = 0; x < ConnectFourGame.WIDTH; x++) {
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board[0].length; x++) {
                 board[y][x] = new ImageButton(this);
                 board[y][x].setOnClickListener(this);
                 board[y][x].setOnLongClickListener(this);
@@ -109,10 +109,10 @@ public class ConnectFourGUI
             }
         }
 
-        for (int y = 0; y < ConnectFourGame.HEIGHT; y++) {
-            for (int x = 0; x < ConnectFourGame.WIDTH; x++) {
-                board[y][x].setScaleType(ImageView.ScaleType.FIT_CENTER);
-                board[y][x].setPadding(0, 0, 0, 0);
+        for (ImageButton[] aBoard : board) {
+            for (int x = 0; x < board[0].length; x++) {
+                aBoard[x].setScaleType(ImageView.ScaleType.FIT_CENTER);
+                aBoard[x].setPadding(0, 0, 0, 0);
             }
         }
 
@@ -131,7 +131,7 @@ public class ConnectFourGUI
      * Iterates across the board and draws each icons.
      */
     public void drawBoard() {
-        for (int x = 0; x < ConnectFourGame.WIDTH; x++) {
+        for (int x = 0; x < board[0].length; x++) {
             if (x == selected && game.getPlayer() == 1) {
                 board[0][x].setImageDrawable(
                         ContextCompat.getDrawable(
@@ -151,20 +151,20 @@ public class ConnectFourGUI
         }
 
         int[][] b = game.getBoard();
-        for (int y = 0; y < board.length; y++) {
-            for (int x = 0; x < board[y].length; x++) {
+        for (int y = 1; y < board.length; y++) {
+            for (int x = 0; x < board[0].length; x++) {
                 if (b[y][x] == 1) {
-                    board[y + 1][x].setImageDrawable(
+                    board[y][x].setImageDrawable(
                             ContextCompat.getDrawable(
                                     getApplicationContext(),
                                     R.drawable.red_chip));
                 } else if (b[y][x] == 2) {
-                    board[y + 1][x].setImageDrawable(
+                    board[y][x].setImageDrawable(
                             ContextCompat.getDrawable(
                                     getApplicationContext(),
                                     R.drawable.yellow_chip));
                 } else {
-                    board[y + 1][x].setImageDrawable(
+                    board[y][x].setImageDrawable(
                             ContextCompat.getDrawable(
                                     getApplicationContext(),
                                     R.drawable.empty_chip));
