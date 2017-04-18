@@ -21,7 +21,7 @@ public class ConnectFourGame {
     /**
      * The length of run needed to win the game.
      */
-    public static final int LENGTH = 4;
+    private static final int LENGTH = 4;
 
     /**
      * The game board containing all Chips placed.
@@ -154,7 +154,6 @@ public class ConnectFourGame {
 
                 if (board[row + dy][col + dx] == player
                         && buildRun(col, row, dx, dy) >= LENGTH) {
-                    System.out.println("OVER");
                     isRunning = false;
                     isWin = true;
                     break;
@@ -197,7 +196,6 @@ public class ConnectFourGame {
             length++;
         }
 
-        System.out.println(length);
         return length;
     }
 

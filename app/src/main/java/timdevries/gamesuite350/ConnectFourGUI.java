@@ -56,7 +56,8 @@ public class ConnectFourGUI
         game = new ConnectFourGame();
 
         // Initializing board of buttons
-        board = new ImageButton[ConnectFourGame.HEIGHT + 1][ConnectFourGame.WIDTH];
+        board = new
+                ImageButton[ConnectFourGame.HEIGHT + 1][ConnectFourGame.WIDTH];
 
         // Give selected a default value
         selected = 0;
@@ -95,8 +96,10 @@ public class ConnectFourGUI
                 }
 
                 // Centering game board
-                myLayout.setX((float) ((w - (buttonSize * board[0].length)) / 2.0));
-                myLayout.setY((float) ((h - (buttonSize * board.length)) / 2.0));
+                myLayout.setX((float) (
+                        (w - (buttonSize * board[0].length)) / 2.0));
+                myLayout.setY((float) (
+                        (h - (buttonSize * board.length)) / 2.0));
             }
         });
 
@@ -130,7 +133,7 @@ public class ConnectFourGUI
     /**
      * Iterates across the board and draws each icons.
      */
-    public void drawBoard() {
+    private void drawBoard() {
         for (int x = 0; x < board[0].length; x++) {
             if (x == selected && game.getPlayer() == 1) {
                 board[0][x].setImageDrawable(
@@ -151,23 +154,23 @@ public class ConnectFourGUI
         }
 
         int[][] b = game.getBoard();
-        for (int y = 1; y < board.length; y++) {
-            for (int x = 0; x < board[0].length; x++) {
+        for (int y = 0; y < b.length; y++) {
+            for (int x = 0; x < b[0].length; x++) {
                 if (b[y][x] == 1) {
-                    board[y][x].setImageDrawable(
+                    board[y + 1][x].setImageDrawable(
                             ContextCompat.getDrawable(
                                     getApplicationContext(),
-                                    R.drawable.red_chip));
+                                    R.drawable.red_board));
                 } else if (b[y][x] == 2) {
-                    board[y][x].setImageDrawable(
+                    board[y + 1][x].setImageDrawable(
                             ContextCompat.getDrawable(
                                     getApplicationContext(),
-                                    R.drawable.yellow_chip));
+                                    R.drawable.yellow_board));
                 } else {
-                    board[y][x].setImageDrawable(
+                    board[y + 1][x].setImageDrawable(
                             ContextCompat.getDrawable(
                                     getApplicationContext(),
-                                    R.drawable.empty_chip));
+                                    R.drawable.empty_board));
                 }
             }
         }

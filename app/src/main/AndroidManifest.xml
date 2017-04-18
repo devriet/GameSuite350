@@ -36,6 +36,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="timdevries.gamesuite350.Home" />
         </activity>
+        <activity
+            android:name=".ConnectFourGUI"
+            android:label="@string/title_activity_connectfour"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="timdevries.gamesuite350.Home" />
+        </activity>
     </application>
 
 </manifest>
