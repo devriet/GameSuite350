@@ -109,7 +109,7 @@ public class CheckersLogic {
 
         //checks to make sure the move is diagonal
         if (checkDiagonalMove(x, y, cx, cy)) {
-            isJump = ((Math.abs(cx-x) == 2) || (Math.abs(cy-y) == 2));
+            isJump = ((Math.abs(cx - x) == 2) || (Math.abs(cy - y) == 2));
             if (isJump) {
                 return moveJump(x, y, cx, cy);
             }
@@ -121,6 +121,7 @@ public class CheckersLogic {
                 board[cx][cy] = new BoardSquare();
                 board[x][y] = b;
                 checkGameStatus();
+                makeKings(x, y);
                 return true;
             } else {
                 if (board[cx][cy].getPiece().getColor() == PieceColor.RED) {
@@ -131,6 +132,7 @@ public class CheckersLogic {
                         board[cx][cy] = new BoardSquare();
                         board[x][y] = b;
                         checkGameStatus();
+                        makeKings(x, y);
                         return true;
                     } else {
                         return false;
@@ -144,6 +146,7 @@ public class CheckersLogic {
                         board[cx][cy] = new BoardSquare();
                         board[x][y] = b;
                         checkGameStatus();
+                        makeKings(x, y);
                         return true;
                     } else {
                         checkGameStatus();
@@ -169,7 +172,8 @@ public class CheckersLogic {
      *
      * @return boolean for if the move was completed.
      */
-    private boolean moveJump(int x, int y, int cx, int cy) {
+    private boolean moveJump(final int x, final int y,
+                             final int cx, final int cy) {
 
         int jumpedRow = (cx - x) / 2;
         int jumpedCol = (cy - y) / 2;
@@ -182,6 +186,7 @@ public class CheckersLogic {
             board[cx][cy] = new BoardSquare();
             board[x][y] = b;
             checkGameStatus();
+            makeKings(x, y);
             return true;
         }
         checkGameStatus();
@@ -249,13 +254,15 @@ public class CheckersLogic {
      * @param x row of the piece
      * @param y col of the piece
      */
-    private void makeKings(final int x, final int y){
-        if (x == 0 ) {
-            if (!board[x][y].getPiece().isKing() && board[x][y].getPiece().getColor() == PieceColor.BLACK) {
+    private void makeKings(final int x, final int y) {
+        if (x == 0) {
+            if (!board[x][y].getPiece().isKing()
+                    && board[x][y].getPiece().getColor() == PieceColor.BLACK) {
                 board[x][y].getPiece().setKing(true);
             }
         } else if (x == (BOARD_SIZE - 1)) {
-            if (!board[x][y].getPiece().isKing() && board[x][y].getPiece().getColor() == PieceColor.RED) {
+            if (!board[x][y].getPiece().isKing()
+                    && board[x][y].getPiece().getColor() == PieceColor.RED) {
                 board[x][y].getPiece().setKing(true);
             }
 
@@ -282,6 +289,7 @@ public class CheckersLogic {
 
     /**
      * Gets the piece that won.
+     * @return the color of the piece that won
      */
     public PieceColor getPieceThatWon() {
         return pieceThatWon;
