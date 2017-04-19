@@ -182,8 +182,12 @@ public class ConnectFourGUI
      * @param view The view this is in
      */
     private void announceGameOver(final View view) {
+        String message = "No moves remaining. Game Over.";
+        if (game.isWin()) {
+            message = "Player " + game.getPlayer() + " wins!";
+        }
         Snackbar.make(view,
-                "Player " + game.getPlayer() + " wins!",
+                message,
                 Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
@@ -231,7 +235,7 @@ public class ConnectFourGUI
 
         drawBoard();
 
-        if (game.isWin()) {
+        if (!game.isRunning()) {
             announceGameOver(view);
         }
 
