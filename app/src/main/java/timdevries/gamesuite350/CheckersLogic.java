@@ -17,10 +17,22 @@ public class CheckersLogic {
     private static final int BOARD_SIZE = 8;
 
     /**
+     * Boolean for if the game is over or not.
+     */
+    private boolean isGameOver;
+
+    /**
+     * The piece that won the game.
+     */
+    private PieceColor pieceThatWon;
+
+    /**
      * Constructor for the Checkers Logic class.
+     * Makes a new game;
      */
     CheckersLogic() {
         board = new BoardSquare[BOARD_SIZE][BOARD_SIZE];
+        isGameOver = false;
         populateBoard();
     }
 
@@ -78,18 +90,29 @@ public class CheckersLogic {
      */
     private boolean move(final int x, final int y,
                       final int cx, final int cy) {
+
+        boolean isJump = false;
+
         //no piece to move
         if (board[cx][cy].getPiece() == null) {
+            checkGameStatus();
             return false;
         }
 
         //no movement of piece
         if ((cx == x) && (cy == y)) {
+            checkGameStatus();
             return false;
         }
 
+        //place is taken
+
         //checks to make sure the move is diagonal
         if (checkDiagonalMove(x, y, cx, cy)) {
+            isJump = ((Math.abs(cx-x) == 2) || (Math.abs(cy-y) == 2));
+            if (isJump) {
+                return moveJump(x, y, cx, cy);
+            }
 
             if (board[cx][cy].getPiece().isKing()) {
                 //can move any direction
@@ -97,6 +120,7 @@ public class CheckersLogic {
                 b = board[cx][cy];
                 board[cx][cy] = new BoardSquare();
                 board[x][y] = b;
+                checkGameStatus();
                 return true;
             } else {
                 if (board[cx][cy].getPiece().getColor() == PieceColor.RED) {
@@ -106,6 +130,7 @@ public class CheckersLogic {
                         b = board[cx][cy];
                         board[cx][cy] = new BoardSquare();
                         board[x][y] = b;
+                        checkGameStatus();
                         return true;
                     } else {
                         return false;
@@ -118,16 +143,48 @@ public class CheckersLogic {
                         b = board[cx][cy];
                         board[cx][cy] = new BoardSquare();
                         board[x][y] = b;
+                        checkGameStatus();
                         return true;
                     } else {
+                        checkGameStatus();
                         return false;
                     }
                 }
             }
         } else {
+            checkGameStatus();
             return false;
         }
+        checkGameStatus();
+        return false;
+    }
 
+    /**
+     * For a jump.
+     *
+     * @param x row of the piece being moved
+     * @param y col of the piece being moved
+     * @param cx row of where the piece is going
+     * @param cy col of where the piece is going
+     *
+     * @return boolean for if the move was completed.
+     */
+    private boolean moveJump(int x, int y, int cx, int cy) {
+
+        int jumpedRow = (cx - x) / 2;
+        int jumpedCol = (cy - y) / 2;
+
+        if (board[jumpedRow][jumpedCol] != null) {
+            board[jumpedRow][jumpedCol] = new BoardSquare();
+
+            BoardSquare b;
+            b = board[cx][cy];
+            board[cx][cy] = new BoardSquare();
+            board[x][y] = b;
+            checkGameStatus();
+            return true;
+        }
+        checkGameStatus();
         return false;
     }
 
@@ -146,6 +203,34 @@ public class CheckersLogic {
     }
 
     /**
+     * Checks the game status.
+     * Assigns a value to isGameOver and Piece that won.
+     */
+    private void checkGameStatus() {
+        int redsOnBoard = 0;
+        int blacksOnBoard = 0;
+        for (BoardSquare[] boardSquares: board) {
+            for (BoardSquare b: boardSquares) {
+                if (b.getPiece().getColor() == PieceColor.BLACK) {
+                    blacksOnBoard++;
+                } else if (b.getPiece().getColor() == PieceColor.RED) {
+                    redsOnBoard++;
+                }
+            }
+        }
+        if (redsOnBoard > 0 && blacksOnBoard == 0) {
+            isGameOver = true;
+            pieceThatWon = PieceColor.RED;
+        } else if (blacksOnBoard > 0 && redsOnBoard == 0) {
+            isGameOver = true;
+            pieceThatWon = PieceColor.BLACK;
+        } else {
+            isGameOver = false;
+        }
+    }
+
+
+    /**
      * Prints the board based on piece.
      * Not useful...
      */
@@ -159,11 +244,46 @@ public class CheckersLogic {
     }
 
     /**
+     * Checks for and makes the moved piece a king if it made
+     * it across the board.
+     * @param x row of the piece
+     * @param y col of the piece
+     */
+    private void makeKings(final int x, final int y){
+        if (x == 0 ) {
+            if (!board[x][y].getPiece().isKing() && board[x][y].getPiece().getColor() == PieceColor.BLACK) {
+                board[x][y].getPiece().setKing(true);
+            }
+        } else if (x == (BOARD_SIZE - 1)) {
+            if (!board[x][y].getPiece().isKing() && board[x][y].getPiece().getColor() == PieceColor.RED) {
+                board[x][y].getPiece().setKing(true);
+            }
+
+        }
+    }
+
+    /**
      * Gets the Board.
      *
      * @return BoardSquare[][] board.
      */
     public BoardSquare[][] getBoard() {
         return board.clone();
+    }
+
+    /**
+     * Gets if the game is over.
+     *
+     * @return boolean isGameOver;
+     */
+    public boolean getGameOver() {
+        return isGameOver;
+    }
+
+    /**
+     * Gets the piece that won.
+     */
+    public PieceColor getPieceThatWon() {
+        return pieceThatWon;
     }
 }
