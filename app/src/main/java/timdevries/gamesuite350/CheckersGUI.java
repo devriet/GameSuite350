@@ -314,15 +314,17 @@ public class CheckersGUI extends AppCompatActivity
                 drawBoard();
                 selected = null;
             } else {
-/*                ImageButton x = (ImageButton) view;
+                selected.setColorFilter(0x00000000, PorterDuff.Mode.DARKEN);
+                ImageButton x = (ImageButton) view;
                 x.setImageDrawable(ContextCompat.getDrawable(
                         getApplicationContext(),
-                        R.drawable.yellow_chip));*/
+                        R.drawable.yellow_chip));
                 int[] cr1 = getCR(selected);
+                selected = null;
                 int[] cr2 = getCR((ImageButton) view);
                 int c1 = cr1[0], r1 = cr1[1];
                 int c2 = cr2[0], r2 = cr2[1];
-                game.move(c2, r2, c1, r1);
+                game.move(r2, c2, r1, c1);
                 drawBoard();
                 selected = null;
             }
