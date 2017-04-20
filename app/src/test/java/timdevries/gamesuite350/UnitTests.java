@@ -11,8 +11,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * A suite of tests designed to ensure proper functionality for the
- * MinesweperGame class.
+ * A suite of tests designed to ensure proper functionality.
  *
  * @author Troy Madsen
  */
@@ -297,5 +296,37 @@ public class UnitTests {
             game.placeTile(i);
         }
         assertTrue(!game.isRunning() && !game.isWin());
+    }
+
+    @Test
+    public void test_move() {
+
+        CheckersLogic cl = new CheckersLogic();
+        // move happens
+        assertTrue(cl.move(3, 1, 2, 0));
+    }
+
+    @Test
+    public void test_jump_move() {
+        CheckersLogic cl = new CheckersLogic();
+        // move several times to set up a jump
+        cl.move(3, 1, 2, 0);
+        cl.move(4, 0, 3, 1);
+        cl.move(4, 2, 5, 1);
+        cl.move(5, 1, 6, 2);
+        //the jump
+        assertTrue(cl.move(6, 2, 4, 0));
+    }
+
+    @Test
+    public void move_to_current_space() {
+        CheckersLogic cl = new CheckersLogic();
+        assertFalse(cl.move(2, 0, 2, 0));
+    }
+
+    @Test
+    public void move_not_diagonal() {
+        CheckersLogic cl = new CheckersLogic();
+        assertFalse(cl.move(2, 1, 2, 0));
     }
 }
