@@ -89,7 +89,7 @@ public class CheckersLogic {
      * @return The boolean value for if the piece moved or not.
      */
     public boolean move(final int x, final int y,
-                      final int cx, final int cy) {
+                 final int cx, final int cy) {
 
         boolean isJump;
 
@@ -187,6 +187,13 @@ public class CheckersLogic {
         int jumpedRow = (cx + x) / 2;
         int jumpedCol = (cy + y) / 2;
 
+        // Piece may not jump more than a distance of 2 or its teammates
+        if (Math.abs(cx - x) > 2 || Math.abs(cy - y) > 2
+                || board[jumpedRow][jumpedCol].getPiece().getColor()
+                == board[x][y].getPiece().getColor()) {
+            return false;
+        }
+
         if (board[jumpedRow][jumpedCol] != null) {
             board[jumpedRow][jumpedCol] = new BoardSquare();
 
@@ -248,7 +255,7 @@ public class CheckersLogic {
      * Prints the board based on piece.
      * Not useful...
      */
-    protected void printBoard() {
+    private void printBoard() {
         for (BoardSquare[] b : board) {
             for (BoardSquare bs : b) {
                 System.out.print(bs.getPiece().getColor().toString() + " ");
