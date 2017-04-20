@@ -45,4 +45,5 @@ public class CheckersLogicTests {
         CheckersLogic cl = new CheckersLogic();
         assertFalse(cl.move(2, 1, 2, 0));
     }
+
 }
