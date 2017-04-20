@@ -99,7 +99,7 @@ public class CheckersLogic {
      *
      * @return The boolean value for if the piece moved or not.
      */
-    private boolean move(final int x, final int y,
+    public boolean move(final int x, final int y,
                       final int cx, final int cy) {
 
         boolean isJump;
