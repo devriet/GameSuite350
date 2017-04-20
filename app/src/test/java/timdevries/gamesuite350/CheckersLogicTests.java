@@ -33,4 +33,16 @@ public class CheckersLogicTests {
         //the jump
         assertTrue(cl.move(6, 2, 4, 0));
     }
+
+    @Test
+    public void move_to_current_space() {
+        CheckersLogic cl = new CheckersLogic();
+        assertFalse(cl.move(2, 0, 2, 0));
+    }
+
+    @Test
+    public void move_not_diagonal() {
+        CheckersLogic cl = new CheckersLogic();
+        assertFalse(cl.move(2, 1, 2, 0));
+    }
 }
