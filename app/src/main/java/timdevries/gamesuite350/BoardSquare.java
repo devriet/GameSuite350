@@ -25,7 +25,7 @@ class BoardSquare {
      * Initializes the board square with just a color.
      */
     BoardSquare() {
-        piece = null;
+        piece = new CheckPiece(PieceColor.BLANK);
     }
 
     /**

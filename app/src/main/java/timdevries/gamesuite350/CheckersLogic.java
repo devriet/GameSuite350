@@ -75,6 +75,15 @@ public class CheckersLogic {
                 }
             }
         }
+
+        //make every other piece BLANK
+        for (int p = 0; p < BOARD_SIZE; p++) {
+            for (int l = 0; l < BOARD_SIZE; l++) {
+                if (board[p][l].getPiece().getColor() == PieceColor.RED || board[p][l].getPiece().getColor() == PieceColor.BLACK) {
+                    board[p][l].setPiece(new CheckPiece(PieceColor.BLANK));
+                }
+            }
+        }
     }
 
     /**
@@ -94,13 +103,19 @@ public class CheckersLogic {
         boolean isJump = false;
 
         //no piece to move
-        if (board[cx][cy].getPiece() == null) {
+        if (board[cx][cy].getPiece().getColor() == PieceColor.BLANK) {
             checkGameStatus();
             return false;
         }
 
         //no movement of piece
         if ((cx == x) && (cy == y)) {
+            checkGameStatus();
+            return false;
+        }
+
+        //move to an occupied space
+        if (board[x][y].getPiece().getColor() != PieceColor.BLANK) {
             checkGameStatus();
             return false;
         }
@@ -118,7 +133,7 @@ public class CheckersLogic {
                 //can move any direction
                 BoardSquare b;
                 b = board[cx][cy];
-                board[cx][cy] = new BoardSquare();
+                board[cx][cy] = new BoardSquare(new CheckPiece(PieceColor.BLANK));
                 board[x][y] = b;
                 checkGameStatus();
                 makeKings(x, y);
@@ -129,7 +144,7 @@ public class CheckersLogic {
                     if (cx > x) {
                         BoardSquare b;
                         b = board[cx][cy];
-                        board[cx][cy] = new BoardSquare();
+                        board[cx][cy] = new BoardSquare(new CheckPiece(PieceColor.BLANK));
                         board[x][y] = b;
                         checkGameStatus();
                         makeKings(x, y);
@@ -143,7 +158,7 @@ public class CheckersLogic {
                     if (cx < x) {
                         BoardSquare b;
                         b = board[cx][cy];
-                        board[cx][cy] = new BoardSquare();
+                        board[cx][cy] = new BoardSquare(new CheckPiece(PieceColor.BLANK));
                         board[x][y] = b;
                         checkGameStatus();
                         makeKings(x, y);
@@ -183,7 +198,7 @@ public class CheckersLogic {
 
             BoardSquare b;
             b = board[cx][cy];
-            board[cx][cy] = new BoardSquare();
+            board[cx][cy] = new BoardSquare(new CheckPiece(PieceColor.BLANK));
             board[x][y] = b;
             checkGameStatus();
             makeKings(x, y);
@@ -239,10 +254,10 @@ public class CheckersLogic {
      * Prints the board based on piece.
      * Not useful...
      */
-    private void printBoard() {
+    protected void printBoard() {
         for (BoardSquare[] b : board) {
             for (BoardSquare bs : b) {
-                System.out.print(bs.getPiece());
+                System.out.print(bs.getPiece().getColor().toString() + " ");
             }
             System.out.print("\n");
         }
@@ -293,5 +308,14 @@ public class CheckersLogic {
      */
     public PieceColor getPieceThatWon() {
         return pieceThatWon;
+    }
+
+    /**
+     * the main method
+     * @param args the arguments
+     */
+    public static void main(final String[] args) {
+        CheckersLogic cl = new CheckersLogic();
+        cl.printBoard();
     }
 }

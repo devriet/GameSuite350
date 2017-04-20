@@ -1,6 +1,7 @@
 package timdevries.gamesuite350;
 
 /**
+ * The checkers piece.
  * Created by robot on 4/17/2017.
  */
 
