@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class CheckersGUI extends AppCompatActivity implements View.OnClickListener {
+    //TODO Tim remove me
 
     ImageButton[][] board;
     ImageButton selected;
