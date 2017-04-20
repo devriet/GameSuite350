@@ -295,7 +295,7 @@ public class CheckersGUI extends AppCompatActivity
 
     /**
      * Performs an action based on a click.
-     * @param view dcskan.
+     * @param view The object that has been clicked.
      */
     @Override
     public void onClick(final View view) {
@@ -308,13 +308,16 @@ public class CheckersGUI extends AppCompatActivity
         if (!(r == -1 || c == -1)) {
             if (selected == null) {
                 selected = (ImageButton) view;
-                selected.setColorFilter(0xffff0000, PorterDuff.Mode.MULTIPLY);
-//                selected.setColorFilter(100);
+                selected.setColorFilter(0xffff0000, PorterDuff.Mode.LIGHTEN);
             } else if (selected == view) {
-                selected.setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+                selected.setColorFilter(0x00000000, PorterDuff.Mode.DARKEN);
                 drawBoard();
                 selected = null;
             } else {
+/*                ImageButton x = (ImageButton) view;
+                x.setImageDrawable(ContextCompat.getDrawable(
+                        getApplicationContext(),
+                        R.drawable.yellow_chip));*/
                 int[] cr1 = getCR(selected);
                 int[] cr2 = getCR((ImageButton) view);
                 int c1 = cr1[0], r1 = cr1[1];
