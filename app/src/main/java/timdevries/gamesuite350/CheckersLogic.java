@@ -75,17 +75,6 @@ public class CheckersLogic {
                 }
             }
         }
-
-        //make every other piece BLANK
-        for (int p = 0; p < BOARD_SIZE; p++) {
-            for (int l = 0; l < BOARD_SIZE; l++) {
-                if (board[p][l].getPiece().getColor() == PieceColor.RED
-                        || board[p][l].getPiece().getColor()
-                        == PieceColor.BLACK) {
-                    board[p][l].setPiece(new CheckPiece(PieceColor.BLANK));
-                }
-            }
-        }
     }
 
     /**
@@ -126,7 +115,7 @@ public class CheckersLogic {
 
         //checks to make sure the move is diagonal
         if (checkDiagonalMove(x, y, cx, cy)) {
-            isJump = ((Math.abs(cx - x) == 2) || (Math.abs(cy - y) == 2));
+            isJump = ((cx - x) == 2 || (cx - x) == -2);
             if (isJump) {
                 return moveJump(x, y, cx, cy);
             }
@@ -144,7 +133,7 @@ public class CheckersLogic {
             } else {
                 if (board[cx][cy].getPiece().getColor() == PieceColor.RED) {
                     //can only move down the board unless it is a king
-                    if (cx > x) {
+                    if (cx < x) {
                         BoardSquare b;
                         b = board[cx][cy];
                         board[cx][cy] = new BoardSquare(
@@ -159,7 +148,7 @@ public class CheckersLogic {
                 } else if (board[cx][cy].getPiece().getColor()
                         == PieceColor.BLACK) {
                     //can only move up the board unless it is a king
-                    if (cx < x) {
+                    if (cx > x) {
                         BoardSquare b;
                         b = board[cx][cy];
                         board[cx][cy] = new BoardSquare(
@@ -195,8 +184,8 @@ public class CheckersLogic {
     private boolean moveJump(final int x, final int y,
                              final int cx, final int cy) {
 
-        int jumpedRow = (cx - x) / 2;
-        int jumpedCol = (cy - y) / 2;
+        int jumpedRow = (cx + x) / 2;
+        int jumpedCol = (cy + y) / 2;
 
         if (board[jumpedRow][jumpedCol] != null) {
             board[jumpedRow][jumpedCol] = new BoardSquare();
