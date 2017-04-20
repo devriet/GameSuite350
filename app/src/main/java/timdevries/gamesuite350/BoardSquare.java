@@ -40,5 +40,7 @@ class BoardSquare {
      * Sets the piece that is on this board square.
      * @param p the piece that is in this board square
      */
-    public void setPiece(final CheckPiece p) { piece = p; }
+    public void setPiece(final CheckPiece p) {
+        piece = p;
+    }
 }
