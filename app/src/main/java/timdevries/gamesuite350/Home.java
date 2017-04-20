@@ -76,7 +76,8 @@ public class Home extends AppCompatActivity {
         checkers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-
+                Intent start = new Intent(me, CheckersGUI.class);
+                startActivity(start);
             }
         });
         connect = (Button) findViewById(R.id.button4);

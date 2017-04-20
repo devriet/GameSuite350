@@ -45,6 +45,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="timdevries.gamesuite350.Home" />
         </activity>
+        <activity
+            android:name=".CheckersGUI"
+            android:label="@string/title_activity_checkers_gui"
+            android:parentActivityName=".Home"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="timdevries.gamesuite350.Home" />
+        </activity>
     </application>
 
 </manifest>
