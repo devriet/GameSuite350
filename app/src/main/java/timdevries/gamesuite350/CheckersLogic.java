@@ -111,7 +111,13 @@ public class CheckersLogic {
             return false;
         }
 
-        //place is taken
+        //move too many spaces
+        if ((cx - x) > 2 || (cx - x) < -2) {
+            checkGameStatus();
+            return false;
+        }
+
+
 
         //checks to make sure the move is diagonal
         if (checkDiagonalMove(x, y, cx, cy)) {
