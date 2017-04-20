@@ -7,5 +7,5 @@
     <string name="ttt_dialog_title">X or O?</string>
     <string name="ttt_dialog_full_title">Spot Full</string>
     <string name="ttt_dialog_full_msg">Choose another spot.</string>
-    <string name="title_activity_checkers_gui">CheckersGUI</string>
+    <string name="title_activity_checkers_gui">Checkers</string>
 </resources>

@@ -1,8 +1,6 @@
 package timdevries.gamesuite350;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,12 +10,9 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 public class CheckersGUI extends AppCompatActivity implements View.OnClickListener {
 
-    LinearLayout linearLayout;
-    LinearLayout[] rows;
     ImageButton[][] board;
     ImageButton selected;
 
@@ -66,9 +61,9 @@ public class CheckersGUI extends AppCompatActivity implements View.OnClickListen
             @Override
             public void run() {
                 // Sizing buttons and icons
-                int w = findViewById(R.id.content_connectfour).getWidth();
+                int w = findViewById(R.id.content_checkers_gui).getWidth();
                 int xSize = w / board[0].length;
-                int h = findViewById(R.id.content_connectfour).getHeight();
+                int h = findViewById(R.id.content_checkers_gui).getHeight();
                 int ySize = h / board.length;
 
                 if (xSize * board[0].length <= h) {
@@ -120,20 +115,18 @@ public class CheckersGUI extends AppCompatActivity implements View.OnClickListen
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-/*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void drawBoard() {
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board[0].length; x++) {
+                board[y][x].setImageDrawable(
+                        ContextCompat.getDrawable(
+                                getApplicationContext(),
+                                R.drawable.red_chip));
+            }
+        }
+
         /*for (int x = 0; x < board[0].length; x++) {
             if (x == selected && game.getPlayer() == 1) {
                 board[0][x].setImageDrawable(
