@@ -4,9 +4,9 @@
     <option name="configuration">
       <map>
         <entry key="active-configuration" value="LOCAL_FILE:$PRJ_DIR$/.idea/sun_checks_as.xml:CIS 350" />
-        <entry key="checkstyle-version" value="7.5.1" />
-        <entry key="location-0" value="LOCAL_FILE:$PRJ_DIR$/.idea/sun_checks_as.xml:CIS 350" />
-        <entry key="location-1" value="CLASSPATH:/sun_checks.xml:The default Checkstyle rules" />
+        <entry key="checkstyle-version" value="7.6" />
+        <entry key="location-0" value="CLASSPATH:/sun_checks.xml:The default Checkstyle rules" />
+        <entry key="location-1" value="LOCAL_FILE:$PRJ_DIR$/.idea/sun_checks_as.xml:CIS 350" />
         <entry key="scan-before-checkin" value="true" />
         <entry key="scanscope" value="JavaOnly" />
         <entry key="suppress-errors" value="false" />
