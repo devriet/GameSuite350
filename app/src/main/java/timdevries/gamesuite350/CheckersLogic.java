@@ -95,25 +95,25 @@ public class CheckersLogic {
 
         //no piece to move
         if (board[cx][cy].getPiece().getColor() == PieceColor.BLANK) {
-            checkGameStatus();
+            updateGameStatus();
             return false;
         }
 
         //no movement of piece
         if ((cx == x) && (cy == y)) {
-            checkGameStatus();
+            updateGameStatus();
             return false;
         }
 
         //move to an occupied space
         if (board[x][y].getPiece().getColor() != PieceColor.BLANK) {
-            checkGameStatus();
+            updateGameStatus();
             return false;
         }
 
         //move too many spaces
         if ((cx - x) > 2 || (cx - x) < -2) {
-            checkGameStatus();
+            updateGameStatus();
             return false;
         }
 
@@ -133,7 +133,7 @@ public class CheckersLogic {
                 board[cx][cy] = new BoardSquare(
                         new CheckPiece(PieceColor.BLANK));
                 board[x][y] = b;
-                checkGameStatus();
+                updateGameStatus();
                 makeKings(x, y);
                 return true;
             } else {
@@ -145,7 +145,7 @@ public class CheckersLogic {
                         board[cx][cy] = new BoardSquare(
                                 new CheckPiece(PieceColor.BLANK));
                         board[x][y] = b;
-                        checkGameStatus();
+                        updateGameStatus();
                         makeKings(x, y);
                         return true;
                     } else {
@@ -160,20 +160,20 @@ public class CheckersLogic {
                         board[cx][cy] = new BoardSquare(
                                 new CheckPiece(PieceColor.BLANK));
                         board[x][y] = b;
-                        checkGameStatus();
+                        updateGameStatus();
                         makeKings(x, y);
                         return true;
                     } else {
-                        checkGameStatus();
+                        updateGameStatus();
                         return false;
                     }
                 }
             }
         } else {
-            checkGameStatus();
+            updateGameStatus();
             return false;
         }
-        checkGameStatus();
+        updateGameStatus();
         return false;
     }
 
@@ -207,11 +207,11 @@ public class CheckersLogic {
             b = board[cx][cy];
             board[cx][cy] = new BoardSquare(new CheckPiece(PieceColor.BLANK));
             board[x][y] = b;
-            checkGameStatus();
+            updateGameStatus();
             makeKings(x, y);
             return true;
         }
-        checkGameStatus();
+        updateGameStatus();
         return false;
     }
 
@@ -230,10 +230,10 @@ public class CheckersLogic {
     }
 
     /**
-     * Checks the game status.
+     * Updates the game status.
      * Assigns a value to isGameOver and Piece that won.
      */
-    private void checkGameStatus() {
+    private void updateGameStatus() {
         int redsOnBoard = 0;
         int blacksOnBoard = 0;
         for (BoardSquare[] boardSquares: board) {
