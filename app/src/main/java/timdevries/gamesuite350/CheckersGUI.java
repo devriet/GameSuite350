@@ -1,21 +1,31 @@
 package timdevries.gamesuite350;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-public class CheckersGUI extends AppCompatActivity implements View.OnClickListener {
-    //TODO Tim remove me
+/**
+ * Creates and manages the view of a Checkers Game.
+ */
+public class CheckersGUI extends AppCompatActivity
+        implements View.OnClickListener {
 
-    ImageButton[][] board;
-    ImageButton selected;
+    /**
+     * The game board.
+     */
+    private ImageButton[][] board;
+
+    /**
+     * The currently selected tile.
+     */
+    private ImageButton selected;
 
     /**
      * Pixel dimension of buttons.
@@ -27,8 +37,12 @@ public class CheckersGUI extends AppCompatActivity implements View.OnClickListen
      */
     private CheckersLogic game;
 
+    /**
+     *
+     * @param savedInstanceState dasji.
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkers_gui);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -118,7 +132,95 @@ public class CheckersGUI extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    /**
+     * Renders the board.
+     */
     private void drawBoard() {
+        BoardSquare[][] boardSquares = game.getBoard();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if ((i + j) % 2 == 0) {
+                    if (boardSquares[i][j].getPiece()
+                            .getColor() == PieceColor.BLANK) {
+                        board[i][j].setImageDrawable(
+                                ContextCompat.getDrawable(
+                                        getApplicationContext(),
+                                        R.drawable.checkers_empty_dark)
+                        );
+                    } else if (boardSquares[i][j].getPiece()
+                            .getColor() == PieceColor.BLACK) {
+                        if (boardSquares[i][j].getPiece().isKing()) {
+                            board[i][j].setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                            getApplicationContext(),
+                                            R.drawable.checkers_black_dark_king)
+                            );
+                        } else {
+                            board[i][j].setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                            getApplicationContext(),
+                                            R.drawable.checkers_black_dark)
+                            );
+                        }
+                    } else {
+                        if (boardSquares[i][j].getPiece().isKing()) {
+                            board[i][j].setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                            getApplicationContext(),
+                                            R.drawable.checkers_red_dark_king)
+                            );
+                        } else {
+                            board[i][j].setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                            getApplicationContext(),
+                                            R.drawable.checkers_red_dark)
+                            );
+                        }
+                    }
+                } else {
+                    if (boardSquares[i][j].getPiece()
+                            .getColor() == PieceColor.BLANK) {
+                        board[i][j].setImageDrawable(
+                                ContextCompat.getDrawable(
+                                        getApplicationContext(),
+                                        R.drawable.checkers_empty_light)
+                        );
+                    } else if (boardSquares[i][j].getPiece()
+                            .getColor() == PieceColor.BLACK) {
+                        if (boardSquares[i][j].getPiece().isKing()) {
+                            board[i][j].setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                            getApplicationContext(),
+                                            R.drawable
+                                                    .checkers_black_light_king)
+                            );
+                        } else {
+                            board[i][j].setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                            getApplicationContext(),
+                                            R.drawable.checkers_black_light)
+                            );
+                        }
+                    } else {
+                        if (boardSquares[i][j].getPiece().isKing()) {
+                            board[i][j].setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                            getApplicationContext(),
+                                            R.drawable.checkers_red_light_king)
+                            );
+                        } else {
+                            board[i][j].setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                            getApplicationContext(),
+                                            R.drawable.checkers_red_light)
+                            );
+                        }
+                    }
+                }
+            }
+        }
+
+        /*
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board[0].length; x++) {
                 board[y][x].setImageDrawable(
@@ -126,7 +228,7 @@ public class CheckersGUI extends AppCompatActivity implements View.OnClickListen
                                 getApplicationContext(),
                                 R.drawable.red_chip));
             }
-        }
+        }*/
 
         /*for (int x = 0; x < board[0].length; x++) {
             if (x == selected && game.getPlayer() == 1) {
@@ -170,7 +272,12 @@ public class CheckersGUI extends AppCompatActivity implements View.OnClickListen
         }*/
     }
 
-    public int[] getCR(ImageButton button) {
+    /**
+     * Returns the column of a button in int[0] and the row in int[1].
+     * @param button The button to find.
+     * @return int[] of size 2.
+     */
+    public int[] getCR(final ImageButton button) {
         int r = -1, c = -1;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -186,19 +293,35 @@ public class CheckersGUI extends AppCompatActivity implements View.OnClickListen
         return out;
     }
 
+    /**
+     * Performs an action based on a click.
+     * @param view dcskan.
+     */
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         int r = -1, c = -1;
-        if (view instanceof Button) {
+        if (view instanceof ImageButton) {
             int[] out = getCR((ImageButton) view);
             c = out[0];
             r = out[1];
         }
         if (!(r == -1 || c == -1)) {
-            if (selected == null) selected = (ImageButton) view;
-            else if (selected == view) selected = null;
-            else {
-
+            if (selected == null) {
+                selected = (ImageButton) view;
+                selected.setColorFilter(0xffff0000, PorterDuff.Mode.MULTIPLY);
+//                selected.setColorFilter(100);
+            } else if (selected == view) {
+                selected.setColorFilter(0x00000000, PorterDuff.Mode.MULTIPLY);
+                drawBoard();
+                selected = null;
+            } else {
+                int[] cr1 = getCR(selected);
+                int[] cr2 = getCR((ImageButton) view);
+                int c1 = cr1[0], r1 = cr1[1];
+                int c2 = cr2[0], r2 = cr2[1];
+                game.move(c2, r2, c1, r1);
+                drawBoard();
+                selected = null;
             }
         }
     }
